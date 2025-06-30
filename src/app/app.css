@@ -26,6 +26,9 @@ body {
   overflow-x: hidden;
   font-weight: 400;
   transition: var(--transition-smooth);
+  
+  /* ELIMINAR CURSOR PARPADEANTE DE TODA LA PÁGINA */
+  caret-color: transparent;
 }
 
 /* SCROLLBAR PERSONALIZADA - NEGRA Y DELGADA */
@@ -157,25 +160,38 @@ body.dark-mode .lang-selector:hover {
 }
 
 .promo-brand {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   position: relative;
-  background: linear-gradient(90deg, #fff, #ccc, #fff);
-  background-size: 200% 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,1), rgba(255,255,255,1), rgba(255,255,255,0.8));
+  background-size: 400% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 3s infinite;
+  animation: shine 2.5s infinite;
+  
+  /* EFECTO DE BRILLO SUTIL PERO VISIBLE */
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2)) 
+          drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
 }
 
 @keyframes shine {
   0% {
     background-position: -200% 0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
+                 0 0 16px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4),
+                 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 30px rgba(255, 255, 255, 0.2);
   }
   100% {
     background-position: 200% 0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
+                 0 0 16px rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -204,10 +220,10 @@ body.dark-mode .lang-selector:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Navbar MEJORADO - SIN "alexander" Y MEJOR DISTRIBUIDO */
+/* Navbar MEJORADO - DEBAJO DEL HEADER */
 .navbar {
   position: fixed;
-  top: 70px;
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.95);
@@ -323,7 +339,7 @@ body.dark-mode .theme-toggle:hover {
   justify-content: flex-start;
   align-items: center;
   background: var(--primary-white);
-  padding: 150px 2rem 2rem;
+  padding: 200px 2rem 2rem;
   overflow-y: auto;
   z-index: 1;
 }
@@ -362,16 +378,19 @@ body.dark-mode .theme-toggle:hover {
 .hero-wrapper {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  justify-content: center;
+  gap: 3rem;
   max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
   animation: fadeInUp 1s ease-out;
 }
 
 .hero-content {
   flex: 1;
-  text-align: left;
+  text-align: center;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Imagen de perfil creativa */
@@ -379,16 +398,22 @@ body.dark-mode .theme-toggle:hover {
   flex: 0 0 auto;
   position: relative;
   animation: fadeInUp 1s ease-out 0.3s both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-image-wrapper {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   transition: var(--transition-smooth);
+  
+  /* EFECTO DE BRILLO CONTINUO MUY NOTORIO */
+  animation: profileGlow 3s ease-in-out infinite alternate;
 }
 
 .profile-image {
@@ -425,19 +450,19 @@ body.dark-mode .theme-toggle:hover {
   transition: var(--transition-smooth);
 }
 
-/* Hover effects */
+/* Hover effects MEJORADOS */
 .profile-image-wrapper:hover {
-  transform: scale(1.05);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+  transform: scale(1.08);
+  animation: profileGlowIntense 1.5s ease-in-out infinite;
 }
 
 .profile-image-wrapper:hover .image-glow {
   opacity: 1;
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 1s ease-in-out infinite;
 }
 
 .profile-image-wrapper:hover .profile-image {
-  filter: brightness(1.1);
+  filter: brightness(1.2) contrast(1.1) saturate(1.05);
 }
 
 /* Animaciones */
@@ -458,6 +483,54 @@ body.dark-mode .theme-toggle:hover {
   50% {
     transform: scale(1.1);
     opacity: 1;
+  }
+}
+
+/* ANIMACIÓN DE BRILLO MODERADO PARA LA IMAGEN */
+@keyframes profileGlow {
+  0% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(0, 0, 0, 0.2),
+                0 0 60px rgba(0, 0, 0, 0.15);
+    filter: brightness(1) contrast(1);
+  }
+  50% {
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2),
+                0 0 45px rgba(0, 0, 0, 0.35),
+                0 0 90px rgba(0, 0, 0, 0.25),
+                0 0 120px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.15) contrast(1.05);
+  }
+  100% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(0, 0, 0, 0.2),
+                0 0 60px rgba(0, 0, 0, 0.15);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+/* ANIMACIÓN INTENSA PERO BALANCEADA PARA HOVER */
+@keyframes profileGlowIntense {
+  0% {
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25),
+                0 0 60px rgba(0, 0, 0, 0.4),
+                0 0 120px rgba(0, 0, 0, 0.3),
+                0 0 160px rgba(0, 0, 0, 0.25);
+    transform: scale(1.08);
+  }
+  50% {
+    box-shadow: 0 35px 110px rgba(0, 0, 0, 0.3),
+                0 0 80px rgba(0, 0, 0, 0.5),
+                0 0 150px rgba(0, 0, 0, 0.4),
+                0 0 200px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25),
+                0 0 60px rgba(0, 0, 0, 0.4),
+                0 0 120px rgba(0, 0, 0, 0.3),
+                0 0 160px rgba(0, 0, 0, 0.25);
+    transform: scale(1.08);
   }
 }
 
@@ -501,10 +574,11 @@ body.dark-mode .theme-toggle:hover {
 .hero-description {
   font-size: 1.125rem;
   color: var(--gray-dark);
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto 3rem;
   line-height: 1.8;
   font-weight: 300;
+  text-align: center;
   animation: fadeInUp 1s ease-out 0.6s both;
 }
 
@@ -571,6 +645,7 @@ body.dark-mode .theme-toggle:hover {
 .section-header {
   margin-bottom: 4rem;
   margin-top: 2rem;
+  text-align: center;
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -580,6 +655,7 @@ body.dark-mode .theme-toggle:hover {
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
   color: var(--primary-black);
+  text-align: center;
 }
 
 .section-subtitle {
@@ -587,6 +663,9 @@ body.dark-mode .theme-toggle:hover {
   color: var(--gray-medium);
   font-weight: 300;
   letter-spacing: 0.025em;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .perfil-grid {
@@ -1379,9 +1458,9 @@ body.dark-mode .features-list li {
   transform: translateY(-2px);
 }
 
-/* Soporte para modo oscuro en imagen */
+/* Soporte para modo oscuro en imagen - EFECTOS DE BRILLO MEJORADOS */
 body.dark-mode .profile-image-wrapper {
-  box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+  animation: profileGlowDark 3s ease-in-out infinite alternate;
 }
 
 body.dark-mode .image-decoration {
@@ -1393,7 +1472,54 @@ body.dark-mode .image-glow {
 }
 
 body.dark-mode .profile-image-wrapper:hover {
-  box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15);
+  animation: profileGlowIntenseDark 1.5s ease-in-out infinite;
+}
+
+/* ANIMACIONES DE BRILLO MODERADO PARA MODO OSCURO */
+@keyframes profileGlowDark {
+  0% {
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08),
+                0 0 30px rgba(255, 255, 255, 0.15),
+                0 0 60px rgba(255, 255, 255, 0.1);
+    filter: brightness(1) contrast(1);
+  }
+  50% {
+    box-shadow: 0 20px 80px rgba(255, 255, 255, 0.15),
+                0 0 45px rgba(255, 255, 255, 0.25),
+                0 0 90px rgba(255, 255, 255, 0.2),
+                0 0 120px rgba(255, 255, 255, 0.15);
+    filter: brightness(1.15) contrast(1.05);
+  }
+  100% {
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08),
+                0 0 30px rgba(255, 255, 255, 0.15),
+                0 0 60px rgba(255, 255, 255, 0.1);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+@keyframes profileGlowIntenseDark {
+  0% {
+    box-shadow: 0 30px 90px rgba(255, 255, 255, 0.15),
+                0 0 60px rgba(255, 255, 255, 0.25),
+                0 0 120px rgba(255, 255, 255, 0.2),
+                0 0 160px rgba(255, 255, 255, 0.15);
+    transform: scale(1.08);
+  }
+  50% {
+    box-shadow: 0 35px 110px rgba(255, 255, 255, 0.2),
+                0 0 80px rgba(255, 255, 255, 0.35),
+                0 0 150px rgba(255, 255, 255, 0.25),
+                0 0 200px rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 30px 90px rgba(255, 255, 255, 0.15),
+                0 0 60px rgba(255, 255, 255, 0.25),
+                0 0 120px rgba(255, 255, 255, 0.2),
+                0 0 160px rgba(255, 255, 255, 0.15);
+    transform: scale(1.08);
+  }
 }
 
 /* Responsive mejorado */
@@ -1417,9 +1543,10 @@ body.dark-mode .profile-image-wrapper:hover {
   }
   
   .navbar {
-    top: 65px;
+    top: 115px;
     padding: 0.5rem 1rem;
     max-width: 95vw;
+    transform: translateX(-50%);
   }
   
   .nav-container {
@@ -1450,7 +1577,7 @@ body.dark-mode .profile-image-wrapper:hover {
   /* Hero responsive con imagen */
   .hero-wrapper {
     flex-direction: column-reverse;
-    gap: 2rem;
+    gap: 1.5rem;
     text-align: center;
   }
 
@@ -1458,9 +1585,13 @@ body.dark-mode .profile-image-wrapper:hover {
     text-align: center;
   }
 
+  .hero-image {
+    margin-left: 0;
+  }
+
   .profile-image-wrapper {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
   }
 
   .hero-title {
@@ -1468,7 +1599,7 @@ body.dark-mode .profile-image-wrapper:hover {
   }
   
   .section {
-    padding: 65px 1rem 1rem;
+    padding: 180px 1rem 1rem;
   }
   
   .perfil-grid {
@@ -1520,8 +1651,8 @@ body.dark-mode .profile-image-wrapper:hover {
   }
   
   .profile-image-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
   }
   
   .image-decoration {
@@ -1580,4 +1711,77 @@ body.dark-mode .lang-selector:focus {
     color: var(--primary-white);
     animation: none;
   }
+}
+
+/* =============================================
+   ELIMINAR CURSOR PARPADEANTE DE TODA LA PÁGINA
+   ============================================= */
+
+/* Eliminar cursor principal de la página */
+*,
+*::before,
+*::after {
+  caret-color: transparent !important;
+}
+
+/* Elementos específicos sin cursor de texto */
+input,
+textarea,
+div[contenteditable],
+span[contenteditable],
+p[contenteditable],
+h1, h2, h3, h4, h5, h6,
+.promo-brand,
+.hero-title,
+.section-title,
+.nav-link,
+span,
+div,
+p {
+  caret-color: transparent !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Para elementos interactivos mantener cursor pointer */
+button,
+a,
+.btn,
+.nav-link,
+.theme-toggle,
+.lang-selector,
+.proyecto-card,
+.perfil-card,
+.store-item {
+  cursor: pointer !important;
+}
+
+/* Eliminar cursor de inputs pero mantener funcionalidad */
+input:focus,
+textarea:focus {
+  caret-color: transparent !important;
+  outline: 2px solid var(--primary-black);
+}
+
+/* Dark mode cursor fixes */
+body.dark-mode input:focus,
+body.dark-mode textarea:focus {
+  outline-color: var(--primary-white);
+}
+
+/* Eliminar específicamente el cursor del header ALEXANDER */
+.promo-brand,
+.promo-brand *,
+.hero-title,
+.hero-title *,
+.section-title,
+.section-title * {
+  caret-color: transparent !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  cursor: default !important;
 }
