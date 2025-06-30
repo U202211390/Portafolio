@@ -50,9 +50,10 @@ export class AppComponent implements OnInit {
       'projects.microservices': 'Microservicios',
       'projects.iot': 'IoT',
       'projects.data': 'Datos',
+      'projects.frontend': 'Frontend',
       
       // Store
-      'store.title': 'Store',
+      'store.title': 'Tienda',
       'store.subtitle': 'Software y hardware especializado',
       'store.all': 'Todos',
       'store.software': 'Software',
@@ -105,6 +106,7 @@ export class AppComponent implements OnInit {
       'projects.microservices': 'Microservices',
       'projects.iot': 'IoT',
       'projects.data': 'Data',
+      'projects.frontend': 'Frontend',
       
       // Store
       'store.title': 'Store',
@@ -170,6 +172,18 @@ export class AppComponent implements OnInit {
         title: 'DevOps & Seguridad',
         description: 'Implementación de CI/CD, containerización y sistemas de autenticación robustos',
         skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
+      },
+      {
+        icon: 'fas fa-robot',
+        title: 'Bot IA & Machine Learning',
+        description: 'Desarrollo de chatbots inteligentes con IA, procesamiento de lenguaje natural y algoritmos ML',
+        skills: ['Python', 'TensorFlow', 'NLP', 'Chatbots', 'Machine Learning']
+      },
+      {
+        icon: 'fas fa-mobile-alt',
+        title: 'Desarrollo Móvil',
+        description: 'Aplicaciones nativas y cross-platform con Flutter, React Native y PWAs optimizadas',
+        skills: ['Flutter', 'React Native', 'Dart', 'PWA', 'Mobile UI/UX']
       }
     ],
     en: [
@@ -196,6 +210,18 @@ export class AppComponent implements OnInit {
         title: 'DevOps & Security',
         description: 'CI/CD implementation, containerization and robust authentication systems',
         skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
+      },
+      {
+        icon: 'fas fa-robot',
+        title: 'AI Bot & Machine Learning',
+        description: 'Development of intelligent chatbots with AI, natural language processing and ML algorithms',
+        skills: ['Python', 'TensorFlow', 'NLP', 'Chatbots', 'Machine Learning']
+      },
+      {
+        icon: 'fas fa-mobile-alt',
+        title: 'Mobile Development',
+        description: 'Native and cross-platform applications with Flutter, React Native and optimized PWAs',
+        skills: ['Flutter', 'React Native', 'Dart', 'PWA', 'Mobile UI/UX']
       }
     ]
   };
@@ -518,6 +544,201 @@ export class AppComponent implements OnInit {
       },
       architectures: ['Layered Architecture', 'Module Pattern'],
       patterns: ['Factory', 'Singleton', 'Middleware', 'Module']
+    },
+    {
+      id: 9,
+      title: 'UrbanPass',
+      description: {
+        es: 'Plataforma de eventos culturales independientes con funcionalidades sociales',
+        en: 'Independent cultural events platform with social functionalities'
+      },
+      image: '🎭',
+      category: 'full-stack',
+      tech: ['Java', 'Spring Boot', 'MongoDB', 'Docker', 'REST API', 'JavaScript', 'HTML/CSS'],
+      details: {
+        es: 'Plataforma completa para la gestión y promoción de eventos culturales independientes con sistema de networking social.',
+        en: 'Complete platform for managing and promoting independent cultural events with social networking system.'
+      },
+      features: {
+        es: [
+          'Sistema de gestión de eventos culturales',
+          'Funcionalidades sociales y networking',
+          'Backend robusto con Spring Boot',
+          'Base de datos NoSQL con MongoDB',
+          'API REST para integración móvil',
+          'Frontend interactivo con JavaScript',
+          'Containerización con Docker',
+          'Interfaz responsive HTML/CSS'
+        ],
+        en: [
+          'Cultural events management system',
+          'Social functionalities and networking',
+          'Robust backend with Spring Boot',
+          'NoSQL database with MongoDB',
+          'REST API for mobile integration',
+          'Interactive frontend with JavaScript',
+          'Containerization with Docker',
+          'Responsive HTML/CSS interface'
+        ]
+      },
+      architectures: ['MVC', 'REST Architecture', 'Social Network Pattern'],
+      patterns: ['Repository', 'Service Layer', 'Observer', 'Strategy']
+    },
+    {
+      id: 10,
+      title: 'Torres de Hanoi - Análisis de Complejidad',
+      description: {
+        es: 'Implementación y análisis algorítmico del clásico problema de Torres de Hanoi',
+        en: 'Implementation and algorithmic analysis of the classic Towers of Hanoi problem'
+      },
+      image: '🗼',
+      category: 'data',
+      tech: ['Python'],
+      details: {
+        es: 'Implementación completa del algoritmo Torres de Hanoi con análisis detallado de complejidad temporal y espacial.',
+        en: 'Complete implementation of the Towers of Hanoi algorithm with detailed time and space complexity analysis.'
+      },
+      features: {
+        es: [
+          'Implementación recursiva optimizada',
+          'Análisis de complejidad temporal O(2^n)',
+          'Análisis de complejidad espacial O(n)',
+          'Visualización del proceso de resolución',
+          'Medición de performance y benchmarks',
+          'Documentación matemática completa',
+          'Testing exhaustivo con diferentes casos',
+          'Comparación con algoritmos alternativos'
+        ],
+        en: [
+          'Optimized recursive implementation',
+          'Time complexity analysis O(2^n)',
+          'Space complexity analysis O(n)',
+          'Solution process visualization',
+          'Performance measurement and benchmarks',
+          'Complete mathematical documentation',
+          'Exhaustive testing with different cases',
+          'Comparison with alternative algorithms'
+        ]
+      },
+      architectures: ['Recursive Pattern', 'Algorithm Analysis'],
+      patterns: ['Recursion', 'Divide and Conquer', 'Stack Pattern']
+    },
+    {
+      id: 11,
+      title: 'Event-Wear Platform',
+      description: {
+        es: 'Gestión de eventos y recomendaciones inteligentes de vestimenta',
+        en: 'Event management and intelligent clothing recommendations'
+      },
+      image: '👔',
+      category: 'backend',
+      tech: ['Java'],
+      details: {
+        es: 'Plataforma innovadora que combina gestión de eventos con sistema de recomendaciones de vestimenta según la ocasión.',
+        en: 'Innovative platform that combines event management with clothing recommendation system according to the occasion.'
+      },
+      features: {
+        es: [
+          'Sistema de gestión de eventos completo',
+          'Motor de recomendaciones de vestimenta',
+          'Algoritmos de matching evento-outfit',
+          'Base de datos de estilos y ocasiones',
+          'API para integración con tiendas',
+          'Sistema de categorización automática',
+          'Análisis de tendencias de moda',
+          'Interfaz de administración robusta'
+        ],
+        en: [
+          'Complete event management system',
+          'Clothing recommendation engine',
+          'Event-outfit matching algorithms',
+          'Styles and occasions database',
+          'API for store integration',
+          'Automatic categorization system',
+          'Fashion trend analysis',
+          'Robust administration interface'
+        ]
+      },
+      architectures: ['Clean Architecture', 'Recommendation System'],
+      patterns: ['Repository', 'Strategy', 'Factory', 'Observer']
+    },
+    {
+      id: 12,
+      title: 'GetWork Platform',
+      description: {
+        es: 'Backend para plataforma de búsqueda y gestión de empleos',
+        en: 'Backend for job search and management platform'
+      },
+      image: '💼',
+      category: 'backend',
+      tech: ['C#', 'Docker'],
+      details: {
+        es: 'Backend robusto para plataforma de empleos con funcionalidades avanzadas de matching y gestión de candidatos.',
+        en: 'Robust backend for job platform with advanced matching and candidate management functionalities.'
+      },
+      features: {
+        es: [
+          'API REST completa para gestión de empleos',
+          'Sistema de matching candidato-empresa',
+          'Gestión de perfiles y CVs',
+          'Sistema de notificaciones en tiempo real',
+          'Integración con proveedores de empleo',
+          'Análisis de compatibilidad automático',
+          'Containerización con Docker',
+          'Arquitectura escalable y modular'
+        ],
+        en: [
+          'Complete REST API for job management',
+          'Candidate-company matching system',
+          'Profile and CV management',
+          'Real-time notification system',
+          'Integration with job providers',
+          'Automatic compatibility analysis',
+          'Docker containerization',
+          'Scalable and modular architecture'
+        ]
+      },
+      architectures: ['Clean Architecture', 'Microservices Ready'],
+      patterns: ['Repository', 'Unit of Work', 'CQRS', 'Mediator']
+    },
+    {
+      id: 13,
+      title: 'Landing eComServ',
+      description: {
+        es: 'Página de aterrizaje moderna para servicios técnicos especializados',
+        en: 'Modern landing page for specialized technical services'
+      },
+      image: '🌐',
+      category: 'frontend',
+      tech: ['CSS', 'HTML', 'JavaScript'],
+      details: {
+        es: 'Landing page optimizada para conversión, diseñada para mostrar servicios técnicos con diseño moderno y responsive.',
+        en: 'Conversion-optimized landing page designed to showcase technical services with modern and responsive design.'
+      },
+      features: {
+        es: [
+          'Diseño responsive y mobile-first',
+          'Animaciones CSS avanzadas',
+          'Optimización para SEO',
+          'Formularios de contacto interactivos',
+          'Galería de servicios técnicos',
+          'Testimonios y casos de éxito',
+          'Call-to-action optimizados',
+          'Performance optimizada (< 2s carga)'
+        ],
+        en: [
+          'Responsive and mobile-first design',
+          'Advanced CSS animations',
+          'SEO optimization',
+          'Interactive contact forms',
+          'Technical services gallery',
+          'Testimonials and success cases',
+          'Optimized call-to-action',
+          'Optimized performance (< 2s load)'
+        ]
+      },
+      architectures: ['Component-based', 'Progressive Enhancement'],
+      patterns: ['Module Pattern', 'Observer', 'Lazy Loading']
     }
   ];
 
@@ -606,7 +827,7 @@ export class AppComponent implements OnInit {
 
   // WhatsApp
   whatsappNumbers = {
-    software: '51965181546',
+    software: '51965181346',
     hardware: '51945464470'
   };
 
@@ -792,8 +1013,46 @@ export class AppComponent implements OnInit {
     }, 2500);
   }
 
-  public downloadCV() {
-    console.log('Descargando CV...');
+  public downloadCV(event?: Event) {
+    const cvUrl = './assets/cv/alexander-castillo-cv.pdf';
+    const button = event?.target as HTMLButtonElement;
+    
+    // Animación del botón
+    if (button) {
+      button.textContent = this.getText('downloading');
+      button.disabled = true;
+      button.style.transform = 'scale(0.95)';
+      button.classList.add('downloading');
+    }
+    
+    // Crear elemento de descarga inmediatamente (no verificar existencia)
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'Alexander_Castillo_CV.pdf';
+    link.style.display = 'none';
+    
+    // Agregar al DOM y descargar
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Feedback de éxito
+    if (button) {
+      setTimeout(() => {
+        button.textContent = this.getText('downloaded');
+        button.style.background = '#10b981';
+        button.classList.remove('downloading');
+        button.classList.add('downloaded');
+        
+        setTimeout(() => {
+          button.textContent = this.getText('hero.btn.cv');
+          button.disabled = false;
+          button.style.transform = 'scale(1)';
+          button.style.background = '';
+          button.classList.remove('downloaded');
+        }, 2000);
+      }, 1000);
+    }
   }
 
   public getCurrentYear() {

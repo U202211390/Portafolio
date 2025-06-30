@@ -641,6 +641,29 @@ body.dark-mode .theme-toggle:hover {
   color: var(--primary-black);
 }
 
+/* Estilos para botón de descarga de CV */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn.downloading {
+  background: var(--gray-medium);
+  animation: pulse 1.5s infinite;
+}
+
+.btn.downloaded {
+  background: #10b981 !important;
+  color: white !important;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
 /* Mi Perfil mejorado */
 .section-header {
   margin-bottom: 4rem;
@@ -670,10 +693,40 @@ body.dark-mode .theme-toggle:hover {
 
 .perfil-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+/* Distribución específica para 6 cards en pantallas grandes */
+@media (min-width: 1200px) {
+  .perfil-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+}
+
+/* Para tablets y pantallas medianas */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .perfil-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    gap: 1.5rem;
+  }
+}
+
+/* Para pantallas pequeñas de tablets */
+@media (min-width: 480px) and (max-width: 767px) {
+  .perfil-grid {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 500px;
+    gap: 1.5rem;
+  }
+  
+  .perfil-card {
+    padding: 2rem 1.5rem;
+  }
 }
 
 .perfil-card {
@@ -691,6 +744,8 @@ body.dark-mode .theme-toggle:hover {
 .perfil-card:nth-child(2) { animation-delay: 0.2s; }
 .perfil-card:nth-child(3) { animation-delay: 0.3s; }
 .perfil-card:nth-child(4) { animation-delay: 0.4s; }
+.perfil-card:nth-child(5) { animation-delay: 0.5s; }
+.perfil-card:nth-child(6) { animation-delay: 0.6s; }
 
 .perfil-card:hover {
   border-color: var(--primary-black);
@@ -715,6 +770,51 @@ body.dark-mode .theme-toggle:hover {
 .perfil-card:hover .card-icon {
   transform: scale(1.1) rotate(360deg);
   background: var(--gray-dark);
+}
+
+/* Animaciones especiales para cards específicas */
+.perfil-card:nth-child(5):hover .card-icon {
+  animation: robotPulse 1s ease-in-out infinite;
+}
+
+.perfil-card:nth-child(6):hover .card-icon {
+  animation: mobileBounce 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes robotPulse {
+  0%, 100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+}
+
+/* Dark mode animaciones especiales */
+body.dark-mode .perfil-card:nth-child(5):hover .card-icon {
+  animation: robotPulseDark 1s ease-in-out infinite;
+}
+
+@keyframes robotPulseDark {
+  0%, 100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes mobileBounce {
+  0% {
+    transform: scale(1.1) translateY(0px);
+  }
+  100% {
+    transform: scale(1.15) translateY(-5px);
+  }
 }
 
 .perfil-card h3 {
@@ -1605,6 +1705,8 @@ body.dark-mode .profile-image-wrapper:hover {
   .perfil-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
   
   .proyectos-grid {

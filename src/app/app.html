@@ -5,7 +5,7 @@
     <div class="promo-separator"></div>
     <div class="promo-text">
       Nuevos proyectos disponibles - 
-      <a (click)="showSection('store')">Store de servicios</a> | 
+              <a (click)="showSection('store')">{{getText('store.title')}} de servicios</a> | 
       <a (click)="showSection('proyectos')">Portafolio completo</a>
     </div>
   </div>
@@ -18,7 +18,7 @@
       <a (click)="showSection('hero')" data-section="hero" class="nav-link active">{{getText('nav.home')}}</a>
       <a (click)="showSection('perfil')" data-section="perfil" class="nav-link">{{getText('nav.profile')}}</a>
       <a (click)="showSection('proyectos')" data-section="proyectos" class="nav-link">{{getText('nav.projects')}}</a>
-      <a (click)="showSection('store')" data-section="store" class="nav-link">Store</a>
+              <a (click)="showSection('store')" data-section="store" class="nav-link">{{getText('store.title')}}</a>
       <a (click)="showSection('contacto')" data-section="contacto" class="nav-link">{{getText('nav.contact')}}</a>
     </div>
     
@@ -48,7 +48,7 @@
         <p class="hero-description">{{profileData.description}}</p>
         <div class="hero-cta">
           <button (click)="showSection('proyectos')" class="btn btn-primary">{{getText('hero.btn.projects')}}</button>
-          <button (click)="downloadCV()" class="btn">{{getText('hero.btn.cv')}}</button>
+          <button (click)="downloadCV($event)" class="btn">{{getText('hero.btn.cv')}}</button>
         </div>
       </div>
       
@@ -135,6 +135,12 @@
         [class.active]="selectedProjectCategory === 'data'"
         class="category-btn">
         {{getText('projects.data')}}
+      </button>
+      <button 
+        (click)="filterProjects('frontend')" 
+        [class.active]="selectedProjectCategory === 'frontend'"
+        class="category-btn">
+        {{getText('projects.frontend')}}
       </button>
     </div>
     
@@ -293,7 +299,7 @@
       <div class="footer-links">
         <a (click)="showSection('perfil')">{{getText('nav.profile')}}</a>
         <a (click)="showSection('proyectos')">{{getText('nav.projects')}}</a>
-        <a (click)="showSection('store')">Store</a>
+                  <a (click)="showSection('store')">{{getText('store.title')}}</a>
         <a (click)="showSection('contacto')">{{getText('nav.contact')}}</a>
       </div>
       
