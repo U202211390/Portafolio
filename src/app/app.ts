@@ -8,21 +8,121 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.css'
 })
 export class AppComponent implements OnInit {
-  protected title = 'Alexander Castillo - Portfolio';
+  title = 'Alexander Castillo - Portfolio';
   
-  // Propiedades para navegación y estado
+  // Propiedades PÚBLICAS para navegación y estado
   currentSection: string = 'hero';
   menuOpen: boolean = false;
   darkMode: boolean = false;
   selectedProject: any = null;
   selectedCategory: string = 'all';
+  selectedProjectCategory: string = 'all';
+  currentLanguage: string = 'es';
+
+  // TEXTOS MULTIIDIOMA COMPLETOS
+  texts: { [key: string]: { [key: string]: string } } = {
+    es: {
+      // Navegación
+      'nav.home': 'Inicio',
+      'nav.profile': 'Mi Perfil',
+      'nav.projects': 'Proyectos',
+      'nav.contact': 'Contacto',
+      'theme.toggle': 'Cambiar tema',
+      
+      // Hero Section
+      'hero.title': 'Ingeniero de Software',
+      'hero.description': 'Especialista en desarrollo Full-Stack con experiencia en microservicios, arquitecturas enterprise y tecnologías modernas. Enfocado en crear soluciones robustas y escalables.',
+      'hero.btn.projects': 'Ver Proyectos',
+      'hero.btn.cv': 'Descargar CV',
+      
+      // Perfil
+      'profile.title': 'Mi Perfil',
+      'profile.subtitle': 'Roles y especialidades profesionales',
+      
+      // Proyectos
+      'projects.title': 'Proyectos',
+      'projects.subtitle': 'Portafolio completo de sistemas reales implementados',
+      
+      // Store
+      'store.title': 'Store',
+      'store.subtitle': 'Software y hardware especializado',
+      'store.all': 'Todos',
+      'store.software': 'Software',
+      'store.hardware': 'Hardware',
+      'store.quote': 'Cotizar',
+      
+      // Contacto
+      'contact.title': 'Contacto',
+      'contact.subtitle': 'Conectemos y trabajemos juntos',
+      'contact.location': 'Ubicación',
+      'contact.phone': 'Teléfono',
+      'contact.email': 'Email',
+      'contact.linkedin': 'LinkedIn',
+      'contact.form.name': 'Nombre completo',
+      'contact.form.email': 'Email',
+      'contact.form.message': 'Mensaje',
+      'contact.form.send': 'Enviar Mensaje',
+      
+      // Mensajes
+      'message.sent': '¡Mensaje Enviado!',
+      'downloading': 'Descargando...',
+      'downloaded': 'Descargado ✓'
+    },
+    en: {
+      // Navigation
+      'nav.home': 'Home',
+      'nav.profile': 'My Profile',
+      'nav.projects': 'Projects',
+      'nav.contact': 'Contact',
+      'theme.toggle': 'Toggle theme',
+      
+      // Hero Section
+      'hero.title': 'Software Engineer',
+      'hero.description': 'Full-Stack development specialist with experience in microservices, enterprise architectures and modern technologies. Focused on creating robust and scalable solutions.',
+      'hero.btn.projects': 'View Projects',
+      'hero.btn.cv': 'Download CV',
+      
+      // Profile
+      'profile.title': 'My Profile',
+      'profile.subtitle': 'Professional roles and specialties',
+      
+      // Projects
+      'projects.title': 'Projects',
+      'projects.subtitle': 'Complete portfolio of real implemented systems',
+      
+      // Store
+      'store.title': 'Store',
+      'store.subtitle': 'Specialized software and hardware',
+      'store.all': 'All',
+      'store.software': 'Software',
+      'store.hardware': 'Hardware',
+      'store.quote': 'Quote',
+      
+      // Contact
+      'contact.title': 'Contact',
+      'contact.subtitle': 'Let\'s connect and work together',
+      'contact.location': 'Location',
+      'contact.phone': 'Phone',
+      'contact.email': 'Email',
+      'contact.linkedin': 'LinkedIn',
+      'contact.form.name': 'Full name',
+      'contact.form.email': 'Email',
+      'contact.form.message': 'Message',
+      'contact.form.send': 'Send Message',
+      
+      // Messages
+      'message.sent': 'Message Sent!',
+      'downloading': 'Downloading...',
+      'downloaded': 'Downloaded ✓'
+    }
+  };
 
   // Datos del perfil
   profileData = {
     name: 'Alexander',
     lastName: 'Castillo',
     title: 'Ingeniero de Software',
-    description: 'Especialista en desarrollo backend con experiencia en tecnologías modernas y metodologías ágiles. Enfocado en crear soluciones eficientes y escalables.',
+    description: 'Especialista en desarrollo Full-Stack con experiencia en microservicios, arquitecturas enterprise y tecnologías modernas. Enfocado en crear soluciones robustas y escalables.',
     location: 'Lima, Perú',
     phone: '(+51) 965 181 546',
     email: 'jaircastillo2502@gmail.com'
@@ -31,320 +131,284 @@ export class AppComponent implements OnInit {
   // Roles profesionales
   perfilRoles = [
     {
+      icon: 'fas fa-microchip',
+      title: 'Arquitecto de Microservicios',
+      description: 'Diseño e implementación de arquitecturas distribuidas con Spring Cloud, Docker y API Gateway',
+      skills: ['Spring Cloud', 'Microservicios', 'Docker', 'Kubernetes', 'API Gateway']
+    },
+    {
       icon: 'fas fa-code',
-      title: 'Desarrollador',
-      description: 'Desarrollo de aplicaciones web y móviles con tecnologías modernas y frameworks actuales',
-      skills: ['Java', 'Spring Boot', 'Angular', 'Vue.js', 'JavaScript']
+      title: 'Desarrollador Full-Stack',
+      description: 'Desarrollo completo desde backend con Java/Node.js hasta frontend con Angular/React',
+      skills: ['Java', 'Spring Boot', 'Angular', 'React', 'TypeScript']
     },
     {
-      icon: 'fas fa-cogs',
-      title: 'Ingeniero',
-      description: 'Arquitectura de software y diseño de sistemas escalables con patrones de diseño efectivos',
-      skills: ['Microservicios', 'API REST', 'Bases de Datos', 'Docker']
+      icon: 'fas fa-database',
+      title: 'Especialista en Datos',
+      description: 'Gestión de bases de datos, cache con Redis, y procesamiento de datos a gran escala',
+      skills: ['PostgreSQL', 'MongoDB', 'Redis', 'ETL', 'Data Pipeline']
     },
     {
-      icon: 'fas fa-chart-line',
-      title: 'Analista',
-      description: 'Análisis de requerimientos y optimización de procesos empresariales con metodologías ágiles',
-      skills: ['UML', 'Scrum', 'Kanban', 'Análisis de Datos']
-    },
-    {
-      icon: 'fas fa-server',
-      title: 'Especialista Backend',
-      description: 'Desarrollo de APIs robustas y gestión de servidores con tecnologías de alta disponibilidad',
-      skills: ['Node.js', 'Python', 'MongoDB', 'PostgreSQL', 'AWS']
+      icon: 'fas fa-shield-alt',
+      title: 'DevOps & Seguridad',
+      description: 'Implementación de CI/CD, containerización y sistemas de autenticación robustos',
+      skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
     }
   ];
 
-  // Proyectos detallados
+  // TODOS LOS PROYECTOS REALES DEL USUARIO
   proyectos = [
     {
       id: 1,
-      title: 'UrbanPass',
-      description: 'Plataforma de movilidad urbana inteligente',
-      image: 'Imagen del proyecto',
-      tech: ['Java', 'Spring Boot', 'MongoDB', 'REST API'],
-      details: 'Sistema integral de gestión de transporte público que permite a los usuarios planificar rutas, realizar pagos digitales y acceder a información en tiempo real sobre el estado del transporte.',
+      title: 'Call Center Connect',
+      description: 'Sistema completo de atención al cliente con arquitectura distribuida',
+      image: '💬',
+      category: 'full-stack',
+      tech: ['Node.js', 'TypeScript', 'React', 'Electron', 'Socket.IO', 'Redis', 'Docker'],
+      details: 'Sistema enterprise de call center con comunicación en tiempo real, arquitectura DDD, API Gateway y aplicación desktop con Electron.',
       features: [
-        'Planificación inteligente de rutas',
-        'Pagos digitales integrados',
-        'Información en tiempo real',
-        'Interfaz intuitiva para usuarios',
-        'Panel administrativo completo'
-      ]
+        'Arquitectura DDD (Domain-Driven Design) completa',
+        'API Gateway con rate limiting y JWT',
+        'Comunicación real-time con Socket.IO',
+        'Aplicación desktop con Electron',
+        'Cache distribuido con Redis',
+        'Microservicios containerizados',
+        'Testing con Jest y Artillery',
+        'Logging estructurado con Winston'
+      ],
+      architectures: ['Clean Architecture', 'Event-Driven', 'Microservices'],
+      patterns: ['Repository', 'CQRS', 'Producer-Consumer', 'API Gateway']
     },
     {
       id: 2,
-      title: 'BonoFacil',
-      description: 'Sistema de gestión de bonos y beneficios',
-      image: 'Imagen del proyecto',
-      tech: ['Vue.js', 'Spring Boot', 'PostgreSQL', 'Python'],
-      details: 'Aplicación web para la gestión automatizada de bonos laborales, con cálculos automáticos, reportes detallados e integración con sistemas de nómina empresarial.',
+      title: 'KiwiPay Loan Backend',
+      description: 'Sistema financiero robusto con Spring Boot y arquitectura hexagonal',
+      image: '💰',
+      category: 'backend',
+      tech: ['Java 17', 'Spring Boot', 'PostgreSQL', 'MapStruct', 'Docker', 'Gradle'],
+      details: 'Plataforma financiera enterprise con procesamiento de préstamos, cálculos complejos y seguridad bancaria.',
       features: [
-        'Cálculo automático de bonos',
-        'Reportes personalizables',
-        'Integración con nómina',
-        'Dashboard analítico',
-        'Notificaciones automáticas'
-      ]
+        'Arquitectura Hexagonal (Ports & Adapters)',
+        'Spring Security con JWT y BCrypt',
+        'Migraciones con Flyway',
+        'Cache L2 con Caffeine',
+        'Rate limiting con Bucket4j',
+        'Testing con Testcontainers',
+        'Documentación OpenAPI 3.0',
+        'Procesamiento Excel con Apache POI'
+      ],
+      architectures: ['Hexagonal Architecture', 'Layered Architecture'],
+      patterns: ['Repository', 'DTO', 'Factory', 'Strategy', 'Observer']
     },
     {
       id: 3,
-      title: 'AventurePe',
-      description: 'App móvil de turismo adventure',
-      image: 'Imagen del proyecto',
-      tech: ['Kotlin', 'Java', 'Firebase', 'Google Maps'],
-      details: 'Aplicación móvil para descubrir y reservar experiencias de turismo aventura en Perú, con geolocalización, reviews y sistema de reservas integrado.',
+      title: 'Microservicios AventuraPe',
+      description: 'Ecosistema de microservicios para turismo con Spring Cloud',
+      image: '🏔️',
+      category: 'microservices',
+      tech: ['Spring Boot', 'Spring Cloud', 'Eureka', 'Gateway', 'PostgreSQL', 'JWT'],
+      details: 'Arquitectura completa de microservicios con service discovery, configuration management y circuit breaker.',
       features: [
-        'Geolocalización de destinos',
-        'Sistema de reservas',
-        'Reviews y calificaciones',
-        'Mapa interactivo',
-        'Perfil de usuario personalizado'
-      ]
+        'Service Discovery con Eureka',
+        'Configuration Management centralizado',
+        'API Gateway con Spring Cloud Gateway',
+        'Circuit Breaker para tolerancia a fallos',
+        'Servicios independientes (IAM, Posts, Profiles)',
+        'Documentación OpenAPI integrada',
+        'Actuator endpoints para monitoreo',
+        'Multi-módulo Maven optimizado'
+      ],
+      architectures: ['Microservices', 'Service-Oriented Architecture'],
+      patterns: ['Service Discovery', 'API Gateway', 'Circuit Breaker', 'Config Management']
     },
     {
       id: 4,
-      title: 'Torres de Hanoi',
-      description: 'Juego interactivo educativo',
-      image: 'Imagen del proyecto',
-      tech: ['Python', 'Tkinter', 'Algoritmos'],
-      details: 'Implementación del clásico juego de las Torres de Hanoi con interfaz gráfica, diferentes niveles de dificultad y sistema de puntuación educativo.',
+      title: 'BonoFácil Platform',
+      description: 'Plataforma financiera híbrida Angular + Spring Boot',
+      image: '📊',
+      category: 'full-stack',
+      tech: ['Angular 20', 'Spring Boot', 'PostgreSQL', 'TypeScript', 'RxJS'],
+      details: 'Sistema de gestión de bonos con arquitectura híbrida que funciona online/offline con fallbacks inteligentes.',
       features: [
-        'Interfaz gráfica intuitiva',
-        'Múltiples niveles',
-        'Sistema de puntuación',
-        'Ayuda contextual',
-        'Contador de movimientos'
-      ]
+        'Sistema híbrido online/offline',
+        'Fallback inteligente a datos simulados',
+        'Calculadora financiera (TREA, flujo de caja)',
+        'Interceptores JWT automáticos',
+        'Role-based access (EMISOR, INVERSOR, ADMIN)',
+        'UI responsive y moderna',
+        'Gestión dual: localStorage + backend',
+        'Error handling centralizado'
+      ],
+      architectures: ['Hexagonal Architecture', 'Component-based'],
+      patterns: ['Repository', 'Guard', 'Interceptor', 'Observer', 'Command']
     },
     {
       id: 5,
-      title: 'Event-Wear Platform',
-      description: 'Plataforma de alquiler de vestuario',
-      image: 'Imagen del proyecto',
-      tech: ['Java', 'Spring Framework', 'MySQL', 'Bootstrap'],
-      details: 'Sistema de gestión para alquiler de vestuario para eventos, con catálogo digital, reservas online y gestión completa de inventario.',
+      title: 'AquaSense IoT Smart Tank',
+      description: 'Sistema IoT inteligente para monitoreo de tanques de agua',
+      image: '🌊',
+      category: 'iot',
+      tech: ['C++', 'ESP32', 'Arduino', 'WiFi', 'Sensores', 'JSON'],
+      details: 'Sistema IoT completo con sensores ultrasónicos, control automático de válvulas y comunicación cloud.',
       features: [
-        'Catálogo digital interactivo',
-        'Sistema de reservas online',
-        'Gestión de inventario',
-        'Calendario de disponibilidad',
-        'Facturación automática'
-      ]
+        'Monitoreo automático de nivel de agua',
+        'Control inteligente de válvulas',
+        'Conectividad IoT con upload cloud',
+        'Sistema de auto-diagnóstico',
+        'Failsafe mechanisms automáticos',
+        'LED status indicators',
+        'Watchdog patterns',
+        'Memory management optimizado'
+      ],
+      architectures: ['Component-based', 'Event-driven', 'State Machine'],
+      patterns: ['Observer', 'Command', 'State Machine', 'Component']
     },
     {
       id: 6,
-      title: 'GetWork Platform',
-      description: 'Portal de empleos especializado',
-      image: 'Imagen del proyecto',
-      tech: ['C#', '.NET', 'SQL Server', 'Angular'],
-      details: 'Plataforma de búsqueda de empleo con matching inteligente entre candidatos y empleadores, sistema de aplicaciones y gestión de perfiles profesionales.',
+      title: 'Tavolo Restaurant IoT',
+      description: 'Gestión de restaurantes con sensores IoT y reservas inteligentes',
+      image: '🍽️',
+      category: 'iot',
+      tech: ['Spring Boot', 'PostgreSQL', 'Docker', 'IoT Sensors', 'JWT'],
+      details: 'Sistema de gestión para restaurantes con integración IoT para reservas de mesas y control automático.',
       features: [
-        'Matching inteligente de perfiles',
-        'Sistema de aplicaciones',
-        'Chat integrado',
-        'Análisis de compatibilidad',
-        'Dashboard para empresas'
-      ]
+        'Reservas inteligentes con sensores IoT',
+        'Multi-stage Docker build optimizado',
+        'Environment variables para deploy cloud',
+        'JWT security stateless',
+        'API documentation con OpenAPI',
+        'Cloud-ready (Heroku/Railway)',
+        'Maven optimization avanzada',
+        'Health checks integrados'
+      ],
+      architectures: ['Clean Architecture', 'Layered'],
+      patterns: ['Repository', 'Service Layer', 'DTO', 'Dependency Injection']
+    },
+    {
+      id: 7,
+      title: 'Redis Data Pipeline',
+      description: 'Sistema distribuido de procesamiento de datos multi-lenguaje',
+      image: '🔄',
+      category: 'data',
+      tech: ['Java', 'Python', 'Redis', 'Jedis', 'Faker', 'Gson'],
+      details: 'Pipeline de datos robusto con Python como producer y Java como consumer, usando Redis como broker.',
+      features: [
+        'Integración multi-lenguaje (Java + Python)',
+        'Producer-Consumer pattern con Redis',
+        'Connection pooling y timeout handling',
+        'Retry mechanisms automáticos',
+        'Data validation e integridad',
+        'Health checks y métricas',
+        'Logging estructurado con emojis',
+        'Error recovery automático'
+      ],
+      architectures: ['Producer-Consumer', 'Data Pipeline'],
+      patterns: ['Producer-Consumer', 'Caching', 'ETL', 'Error Handling']
+    },
+    {
+      id: 8,
+      title: 'Kiwi API Backend',
+      description: 'API principal con integración de servicios externos',
+      image: '🥝',
+      category: 'backend',
+      tech: ['Node.js', 'TypeScript', 'PostgreSQL', 'Twilio', 'SendGrid', 'Cloudinary'],
+      details: 'Backend principal con integración completa de servicios externos, validación robusta y documentación automática.',
+      features: [
+        'Integración Twilio (SMS), SendGrid (Email)',
+        'Upload de imágenes con Cloudinary',
+        'Validación con Zod schemas',
+        'Swagger automático desde JSDoc',
+        'Path aliasing con module-alias',
+        'Scripts de automatización DB',
+        'File processing con node-xlsx',
+        'CORS y seguridad configurada'
+      ],
+      architectures: ['Layered Architecture', 'Module Pattern'],
+      patterns: ['Factory', 'Singleton', 'Middleware', 'Module']
     }
   ];
 
-  // Habilidades técnicas
-  habilidadesTecnicas = [
-    {
-      category: 'Backend',
-      skills: [
-        { name: 'Java', level: 'Avanzado' },
-        { name: 'Spring Boot', level: 'Avanzado' },
-        { name: 'Python', level: 'Intermedio' },
-        { name: 'Node.js', level: 'Intermedio' },
-        { name: 'C#', level: 'Intermedio' }
-      ]
-    },
-    {
-      category: 'Frontend',
-      skills: [
-        { name: 'Angular', level: 'Avanzado' },
-        { name: 'Vue.js', level: 'Intermedio' },
-        { name: 'JavaScript', level: 'Avanzado' },
-        { name: 'TypeScript', level: 'Intermedio' },
-        { name: 'CSS/SCSS', level: 'Intermedio' }
-      ]
-    },
-    {
-      category: 'Bases de Datos',
-      skills: [
-        { name: 'PostgreSQL', level: 'Avanzado' },
-        { name: 'MongoDB', level: 'Intermedio' },
-        { name: 'MySQL', level: 'Intermedio' },
-        { name: 'SQL Server', level: 'Básico' }
-      ]
-    },
-    {
-      category: 'Herramientas',
-      skills: [
-        { name: 'Git', level: 'Avanzado' },
-        { name: 'Docker', level: 'Intermedio' },
-        { name: 'AWS', level: 'Básico' },
-        { name: 'Postman', level: 'Avanzado' }
-      ]
-    }
-  ];
-
-  // Timeline educativo
-  educacion = [
-    {
-      title: 'Universidad Peruana de Ciencias Aplicadas',
-      degree: 'Ingeniería de Software',
-      specialization: 'Especialización en Gestión de Proyectos Ágiles y Desarrollo de Software Empresarial',
-      period: '2020 - 2024'
-    },
-    {
-      title: 'Colegio Parroquial Santa Cruz',
-      degree: 'Educación Secundaria',
-      specialization: 'Bachillerato completo con mención en Ciencias',
-      period: '2015 - 2019'
-    }
-  ];
-
-  // Productos del store (sin precios)
+  // Store items
   storeItems = [
     {
       id: 1,
-      name: 'Sistema de Gestión Web',
-      description: 'Solución completa para gestión empresarial con tecnologías modernas y escalables',
+      name: 'Sistema de Microservicios',
+      description: 'Arquitectura completa de microservicios con Spring Cloud, Docker y CI/CD',
       category: 'software',
-      image: 'Software personalizado'
+      image: '🏗️'
     },
     {
       id: 2,
-      name: 'App Móvil Personalizada',
-      description: 'Aplicación móvil desarrollada a medida para iOS y Android con tecnologías nativas',
+      name: 'App Full-Stack',
+      description: 'Aplicación completa Angular/React + Spring Boot/Node.js con deployment',
       category: 'software',
-      image: 'Aplicación móvil'
+      image: '💻'
     },
     {
       id: 3,
-      name: 'Consultoría Técnica',
-      description: 'Asesoría especializada en arquitectura y desarrollo de software empresarial',
+      name: 'Sistema IoT',
+      description: 'Solución IoT completa con sensores, backend y dashboard de monitoreo',
       category: 'software',
-      image: 'Consultoría especializada'
+      image: '🌐'
     },
     {
       id: 4,
-      name: 'Laptop Gaming Pro',
-      description: 'Laptop de alto rendimiento optimizada para desarrollo y gaming profesional',
+      name: 'Workstation Pro',
+      description: 'Estación de trabajo optimizada para desarrollo con múltiples monitores',
       category: 'hardware',
-      image: 'Laptop gaming'
+      image: '🖥️'
     },
     {
       id: 5,
-      name: 'Monitor 4K Profesional',
-      description: 'Monitor profesional 4K para programación y diseño con calibración de color',
+      name: 'Servidor Development',
+      description: 'Servidor dedicado para desarrollo y testing con Docker y Kubernetes',
       category: 'hardware',
-      image: 'Monitor 4K'
-    },
-    {
-      id: 6,
-      name: 'Teclado Mecánico Premium',
-      description: 'Teclado mecánico premium para programadores con switches personalizados',
-      category: 'hardware',
-      image: 'Teclado mecánico'
+      image: '🖧'
     }
   ];
 
-  // Mapa de iconos para habilidades
-  skillIcons: { [key: string]: string } = {
-    // Backend
-    'Java': 'fab fa-java',
-    'Spring Boot': 'fas fa-leaf',
-    'Python': 'fab fa-python',
-    'Node.js': 'fab fa-node-js',
-    'C#': 'fas fa-code',
-    
-    // Frontend
-    'Angular': 'fab fa-angular',
-    'Vue.js': 'fab fa-vuejs',
-    'JavaScript': 'fab fa-js',
-    'TypeScript': 'fas fa-code',
-    'CSS/SCSS': 'fab fa-css3-alt',
-    
-    // Bases de Datos
-    'PostgreSQL': 'fas fa-database',
-    'MongoDB': 'fas fa-database',
-    'MySQL': 'fas fa-database',
-    'SQL Server': 'fas fa-database',
-    
-    // Herramientas
-    'Git': 'fab fa-git-alt',
-    'Docker': 'fab fa-docker',
-    'AWS': 'fab fa-aws',
-    'Postman': 'fas fa-paper-plane'
-  };
-
-  // Números de WhatsApp
+  // WhatsApp
   whatsappNumbers = {
-    software: '51965181546', // Para software
-    hardware: '51945464470'  // Para hardware
+    software: '51965181546',
+    hardware: '51945464470'
   };
 
   ngOnInit() {
-    // Cargar tema desde localStorage
+    this.loadLanguage();
     this.loadTheme();
-    
-    // Mostrar sección hero por defecto
     this.showSection('hero');
-    
-    // Inicializar animaciones
     this.initializeAnimations();
   }
 
-  // Cargar tema desde localStorage
-  loadTheme() {
-    const savedTheme = localStorage.getItem('alexander-theme');
-    this.darkMode = savedTheme === 'dark';
+  // FUNCIONES PÚBLICAS PARA EL TEMPLATE
+
+  public getText(key: string): string {
+    return this.texts[this.currentLanguage][key] || key;
+  }
+
+  public toggleLanguage() {
+    this.currentLanguage = this.currentLanguage === 'es' ? 'en' : 'es';
+    localStorage.setItem('alexander-language', this.currentLanguage);
+    this.updateDataByLanguage();
     
-    if (this.darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
+    const langButton = document.querySelector('.lang-selector') as HTMLElement;
+    if (langButton) {
+      langButton.style.transform = 'scale(1.1)';
+      setTimeout(() => langButton.style.transform = '', 200);
     }
   }
 
-  // Inicializar animaciones
-  initializeAnimations() {
-    // Observador para animaciones en scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    // Observar elementos con animación
-    setTimeout(() => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      elements.forEach(el => observer.observe(el));
-    }, 500);
-  }
-
-  // Navegación entre secciones MEJORADA - SIN ESPACIOS EN BLANCO
-  showSection(sectionId: string) {
-    // Remover clase active de todas las secciones
+  // NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA
+  public showSection(sectionId: string) {
+    // Ocultar todas las secciones INMEDIATAMENTE
     const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-      section.classList.remove('active');
-    });
+    sections.forEach(section => section.classList.remove('active'));
     
-    // Scroll al top inmediatamente
-    window.scrollTo({
-      top: 0,
-      behavior: 'auto' // Cambio a 'auto' para evitar delays
-    });
+    // Scroll al top INSTANTÁNEO
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     
-    // Mostrar la nueva sección inmediatamente
+    // Mostrar sección INMEDIATAMENTE
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
       targetSection.classList.add('active');
@@ -352,9 +416,7 @@ export class AppComponent implements OnInit {
     
     // Actualizar navbar
     const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-    });
+    navLinks.forEach(link => link.classList.remove('active'));
     
     const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
     if (activeLink) {
@@ -362,45 +424,28 @@ export class AppComponent implements OnInit {
     }
     
     this.currentSection = sectionId;
-    this.menuOpen = false;
   }
 
-  // Toggle menú móvil
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  // Toggle tema oscuro ARREGLADO
-  toggleTheme() {
+  public toggleTheme() {
     this.darkMode = !this.darkMode;
     
-    const body = document.body;
-    
     if (this.darkMode) {
-      body.classList.add('dark-mode');
+      document.body.classList.add('dark-mode');
       localStorage.setItem('alexander-theme', 'dark');
     } else {
-      body.classList.remove('dark-mode');
+      document.body.classList.remove('dark-mode');
       localStorage.setItem('alexander-theme', 'light');
     }
     
-    // Feedback visual inmediato
+    // Feedback visual
     const themeButton = document.querySelector('.theme-toggle') as HTMLElement;
     if (themeButton) {
-      themeButton.style.transform = 'rotate(360deg)';
-      setTimeout(() => {
-        themeButton.style.transform = '';
-      }, 300);
+      themeButton.style.transform = 'scale(1.1) rotate(360deg)';
+      setTimeout(() => themeButton.style.transform = '', 400);
     }
   }
 
-  // Obtener icono para habilidad
-  getSkillIcon(skillName: string): string {
-    return this.skillIcons[skillName] || 'fas fa-code';
-  }
-
-  // Generar enlace de WhatsApp
-  getWhatsAppLink(category: string): string {
+  public getWhatsAppLink(category: string): string {
     const number = category === 'software' 
       ? this.whatsappNumbers.software 
       : this.whatsappNumbers.hardware;
@@ -412,128 +457,116 @@ export class AppComponent implements OnInit {
     return `https://wa.me/${number}?text=${message}`;
   }
 
-  // Mostrar detalles del proyecto
-  showProjectDetails(project: any) {
+  public showProjectDetails(project: any) {
     this.selectedProject = project;
-    // Bloquear scroll del body
     document.body.style.overflow = 'hidden';
   }
 
-  // Cerrar modal del proyecto
-  closeProjectModal() {
+  public closeProjectModal() {
     this.selectedProject = null;
-    // Restaurar scroll del body
     document.body.style.overflow = 'auto';
   }
 
-  // Filtrar productos del store
-  filterStore(category: string) {
-    this.selectedCategory = category;
-    
-    // Animación de cambio de categoría
-    const storeItems = document.querySelectorAll('.store-item');
-    storeItems.forEach((item, index) => {
-      (item as HTMLElement).style.animation = 'none';
-      setTimeout(() => {
-        (item as HTMLElement).style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
-      }, 50);
-    });
+  public filterProjects(category: string) {
+    this.selectedProjectCategory = category;
   }
 
-  // Obtener productos filtrados
-  getFilteredItems() {
+  public getFilteredProjects() {
+    if (this.selectedProjectCategory === 'all') {
+      return this.proyectos;
+    }
+    return this.proyectos.filter(proyecto => proyecto.category === this.selectedProjectCategory);
+  }
+
+  public filterStore(category: string) {
+    this.selectedCategory = category;
+  }
+
+  public getFilteredItems() {
     if (this.selectedCategory === 'all') {
       return this.storeItems;
     }
     return this.storeItems.filter(item => item.category === this.selectedCategory);
   }
 
-  // Manejar contacto
-  handleContact(event: any) {
+  public handleContact(event: any) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const contactData = {
+    
+    console.log('Datos de contacto:', {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message')
-    };
+    });
     
-    console.log('Datos de contacto:', contactData);
-    
-    // Animación de éxito mejorada
     const submitBtn = event.target.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
-    const originalBg = submitBtn.style.background;
     
-    submitBtn.textContent = '¡Mensaje Enviado!';
+    submitBtn.textContent = this.getText('message.sent');
     submitBtn.style.background = 'var(--whatsapp-green)';
-    submitBtn.style.transform = 'scale(1.05)';
     
     setTimeout(() => {
       submitBtn.textContent = originalText;
-      submitBtn.style.background = originalBg;
-      submitBtn.style.transform = '';
+      submitBtn.style.background = '';
       event.target.reset();
     }, 2500);
   }
 
-  // Descargar CV
-  downloadCV() {
-    // Simulación de descarga
-    const link = document.createElement('a');
-    link.href = '#'; // Aquí iría la URL real del CV
-    link.download = 'Alexander_Castillo_CV.pdf';
-    
-    // Feedback visual
-    const button = event?.target as HTMLButtonElement;
-    if (button) {
-      const originalText = button.textContent;
-      button.textContent = 'Descargando...';
-      button.style.transform = 'scale(0.95)';
-      
-      setTimeout(() => {
-        button.textContent = 'Descargado ✓';
-        button.style.background = 'var(--whatsapp-green)';
-        
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = '';
-          button.style.transform = '';
-        }, 2000);
-      }, 1000);
-    }
-    
-    // link.click(); // Descomentar cuando tengas el CV real
+  public downloadCV() {
+    console.log('Descargando CV...');
   }
 
-  // Ver portafolio completo
-  viewPortfolio() {
-    this.showSection('proyectos');
-  }
-
-  // Obtener año actual
-  getCurrentYear() {
+  public getCurrentYear() {
     return new Date().getFullYear();
   }
 
-  // Método para manejar errores de imágenes
-  onImageError(event: any) {
-    event.target.style.display = 'none';
+  // FUNCIONES PRIVADAS
+
+  private loadLanguage() {
+    const savedLanguage = localStorage.getItem('alexander-language');
+    this.currentLanguage = savedLanguage || 'es';
   }
 
-  // Método para scroll suave a sección
-  scrollToSection(sectionId: string) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  private loadTheme() {
+    const savedTheme = localStorage.getItem('alexander-theme');
+    this.darkMode = savedTheme === 'dark';
+    
+    if (this.darkMode) {
+      document.body.classList.add('dark-mode');
     }
   }
 
-  // Escuchar teclas para navegación rápida
-  @HostListener('window:keydown', ['$event'])
+  private updateDataByLanguage() {
+    if (this.currentLanguage === 'en') {
+      this.profileData.title = 'Software Engineer';
+      this.profileData.description = 'Full-Stack development specialist with experience in microservices, enterprise architectures and modern technologies. Focused on creating robust and scalable solutions.';
+      this.profileData.location = 'Lima, Peru';
+    } else {
+      this.profileData.title = 'Ingeniero de Software';
+      this.profileData.description = 'Especialista en desarrollo Full-Stack con experiencia en microservicios, arquitecturas enterprise y tecnologías modernas. Enfocado en crear soluciones robustas y escalables.';
+      this.profileData.location = 'Lima, Perú';
+    }
+  }
+
+  private initializeAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(el => observer.observe(el));
+    }, 500);
+  }
+
+  @HostListener('document:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    if (event.ctrlKey || event.metaKey) {
-      switch(event.key) {
+    if (event.ctrlKey) {
+      switch (event.key) {
         case '1':
           event.preventDefault();
           this.showSection('hero');
@@ -548,22 +581,25 @@ export class AppComponent implements OnInit {
           break;
         case '4':
           event.preventDefault();
-          this.showSection('habilidades');
+          this.showSection('store');
           break;
         case '5':
           event.preventDefault();
-          this.showSection('store');
-          break;
-        case '6':
-          event.preventDefault();
           this.showSection('contacto');
+          break;
+        case 'd':
+        case 'D':
+          event.preventDefault();
+          this.toggleTheme();
+          break;
+        case 'l':
+        case 'L':
+          event.preventDefault();
+          this.toggleLanguage();
           break;
       }
     }
-    
-    // Escape para cerrar modal
-    if (event.key === 'Escape' && this.selectedProject) {
-      this.closeProjectModal();
-    }
   }
 }
+
+

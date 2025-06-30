@@ -1,4 +1,4 @@
-<!-- Header Promocional mejorado -->
+<!-- Header Promocional CON EFECTO DE BRILLO -->
 <div class="promo-header">
   <div class="promo-content">
     <div class="promo-brand">Alexander</div>
@@ -11,23 +11,26 @@
   </div>
 </div>
 
-<!-- Navbar mejorado -->
+<!-- Navbar MEJORADO - SIN "alexander" Y CON SELECTOR DE IDIOMA -->
 <nav class="navbar">
   <div class="nav-container">
-    <a (click)="showSection('hero')" class="nav-brand">alexander</a>
-    
     <div class="nav-menu">
-      <a (click)="showSection('hero')" data-section="hero" class="nav-link active">Inicio</a>
-      <a (click)="showSection('perfil')" data-section="perfil" class="nav-link">Mi Perfil</a>
-      <a (click)="showSection('proyectos')" data-section="proyectos" class="nav-link">Proyectos</a>
-      <a (click)="showSection('habilidades')" data-section="habilidades" class="nav-link">Habilidades</a>
+      <a (click)="showSection('hero')" data-section="hero" class="nav-link active">{{getText('nav.home')}}</a>
+      <a (click)="showSection('perfil')" data-section="perfil" class="nav-link">{{getText('nav.profile')}}</a>
+      <a (click)="showSection('proyectos')" data-section="proyectos" class="nav-link">{{getText('nav.projects')}}</a>
       <a (click)="showSection('store')" data-section="store" class="nav-link">Store</a>
-      <a (click)="showSection('contacto')" data-section="contacto" class="nav-link">Contacto</a>
+      <a (click)="showSection('contacto')" data-section="contacto" class="nav-link">{{getText('nav.contact')}}</a>
     </div>
     
-    <button (click)="toggleTheme()" class="theme-toggle" [title]="darkMode ? 'Modo claro' : 'Modo oscuro'">
-      <i [class]="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
-    </button>
+    <div class="nav-controls">
+      <button (click)="toggleLanguage()" class="lang-selector">
+        {{currentLanguage === 'es' ? 'ES' : 'EN'}}
+      </button>
+      
+      <button (click)="toggleTheme()" class="theme-toggle" [title]="getText('theme.toggle')">
+        <i [class]="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -42,8 +45,8 @@
       <p class="hero-subtitle">{{profileData.title}}</p>
       <p class="hero-description">{{profileData.description}}</p>
       <div class="hero-cta">
-        <button (click)="showSection('proyectos')" class="btn btn-primary">Ver Proyectos</button>
-        <button (click)="downloadCV()" class="btn">Descargar CV</button>
+        <button (click)="showSection('proyectos')" class="btn btn-primary">{{getText('hero.btn.projects')}}</button>
+        <button (click)="downloadCV()" class="btn">{{getText('hero.btn.cv')}}</button>
       </div>
     </div>
   </div>
@@ -53,8 +56,8 @@
 <section id="perfil" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Mi Perfil</h2>
-      <p class="section-subtitle">Roles y especialidades profesionales</p>
+      <h2 class="section-title">{{getText('profile.title')}}</h2>
+      <p class="section-subtitle">{{getText('profile.subtitle')}}</p>
     </div>
     
     <div class="perfil-grid">
@@ -72,71 +75,77 @@
   </div>
 </section>
 
-<!-- Proyectos Section -->
+<!-- Proyectos Section ACTUALIZADA -->
 <section id="proyectos" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Proyectos</h2>
-      <p class="section-subtitle">Repositorio de trabajos destacados</p>
+      <h2 class="section-title">{{getText('projects.title')}}</h2>
+      <p class="section-subtitle">{{getText('projects.subtitle')}}</p>
     </div>
     
+    <!-- Filtros de categoría de proyectos -->
+    <div class="project-categories">
+      <button 
+        (click)="filterProjects('all')" 
+        [class.active]="selectedProjectCategory === 'all'"
+        class="category-btn">
+        Todos ({{proyectos.length}})
+      </button>
+      <button 
+        (click)="filterProjects('full-stack')" 
+        [class.active]="selectedProjectCategory === 'full-stack'"
+        class="category-btn">
+        Full-Stack
+      </button>
+      <button 
+        (click)="filterProjects('backend')" 
+        [class.active]="selectedProjectCategory === 'backend'"
+        class="category-btn">
+        Backend
+      </button>
+      <button 
+        (click)="filterProjects('microservices')" 
+        [class.active]="selectedProjectCategory === 'microservices'"
+        class="category-btn">
+        Microservicios
+      </button>
+      <button 
+        (click)="filterProjects('iot')" 
+        [class.active]="selectedProjectCategory === 'iot'"
+        class="category-btn">
+        IoT
+      </button>
+      <button 
+        (click)="filterProjects('data')" 
+        [class.active]="selectedProjectCategory === 'data'"
+        class="category-btn">
+        Data
+      </button>
+    </div>
+    
+    <!-- Grid de proyectos MEJORADO -->
     <div class="proyectos-grid">
-      <div class="proyecto-card" *ngFor="let proyecto of proyectos" (click)="showProjectDetails(proyecto)">
-        <div class="proyecto-image">{{proyecto.image}}</div>
+      <div class="proyecto-card" *ngFor="let proyecto of getFilteredProjects()" (click)="showProjectDetails(proyecto)">
+        <div class="proyecto-image">
+          <span class="project-icon">{{proyecto.image}}</span>
+          <div class="project-category">{{proyecto.category}}</div>
+        </div>
         <div class="proyecto-content">
           <h3>{{proyecto.title}}</h3>
           <p>{{proyecto.description}}</p>
           <div class="proyecto-tech">
-            <span class="tech-tag" *ngFor="let tech of proyecto.tech">{{tech}}</span>
+            <span class="tech-tag" *ngFor="let tech of proyecto.tech.slice(0, 4)">{{tech}}</span>
+            <span class="tech-more" *ngIf="proyecto.tech.length > 4">+{{proyecto.tech.length - 4}}</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Habilidades Section reorganizada -->
-<section id="habilidades" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Habilidades & Estudios</h2>
-      <p class="section-subtitle">Stack tecnológico y formación académica</p>
-    </div>
-    
-    <div class="habilidades-container">
-      <!-- Stack Tecnológico reorganizado -->
-      <div>
-        <h3 class="subsection-title">Stack Tecnológico</h3>
-        <div class="skills-section">
-          <div *ngFor="let category of habilidadesTecnicas" class="skill-category">
-            <h4>{{category.category}}</h4>
-            <div class="skills-grid">
-              <div class="skill-item" *ngFor="let skill of category.skills">
-                <div class="skill-info">
-                  <div class="skill-icon">
-                    <i [class]="getSkillIcon(skill.name)"></i>
-                  </div>
-                  <span>{{skill.name}}</span>
-                </div>
-                <span class="skill-level">{{skill.level}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Formación Académica mejorada -->
-      <div class="education-section">
-        <h3 class="subsection-title">Formación Académica</h3>
-        
-        <div class="timeline">
-          <div class="timeline-item" *ngFor="let edu of educacion">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <h4>{{edu.title}}</h4>
-              <div class="degree">{{edu.degree}}</div>
-              <div class="specialization">{{edu.specialization}}</div>
-            </div>
+          <div class="project-stats">
+            <span class="stat">
+              <i class="fas fa-layer-group"></i>
+              {{proyecto.architectures?.length || 0}} Arquitecturas
+            </span>
+            <span class="stat">
+              <i class="fas fa-puzzle-piece"></i>
+              {{proyecto.patterns?.length || 0}} Patrones
+            </span>
           </div>
         </div>
       </div>
@@ -148,8 +157,8 @@
 <section id="store" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Store</h2>
-      <p class="section-subtitle">Software y hardware especializado</p>
+      <h2 class="section-title">{{getText('store.title')}}</h2>
+      <p class="section-subtitle">{{getText('store.subtitle')}}</p>
     </div>
     
     <!-- Filtros de categoría -->
@@ -158,19 +167,19 @@
         (click)="filterStore('all')" 
         [class.active]="selectedCategory === 'all'"
         class="category-btn">
-        Todos
+        {{getText('store.all')}}
       </button>
       <button 
         (click)="filterStore('software')" 
         [class.active]="selectedCategory === 'software'"
         class="category-btn">
-        Software
+        {{getText('store.software')}}
       </button>
       <button 
         (click)="filterStore('hardware')" 
         [class.active]="selectedCategory === 'hardware'"
         class="category-btn">
-        Hardware
+        {{getText('store.hardware')}}
       </button>
     </div>
     
@@ -186,7 +195,7 @@
             target="_blank" 
             class="whatsapp-btn">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
-            Cotizar
+            {{getText('store.quote')}}
           </a>
         </div>
       </div>
@@ -198,8 +207,8 @@
 <section id="contacto" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-subtitle">Conectemos y trabajemos juntos</p>
+      <h2 class="section-title">{{getText('contact.title')}}</h2>
+      <p class="section-subtitle">{{getText('contact.subtitle')}}</p>
     </div>
     
     <div class="contact-content">
@@ -208,7 +217,7 @@
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
           <div>
-            <h4>Ubicación</h4>
+            <h4>{{getText('contact.location')}}</h4>
             <span>{{profileData.location}}</span>
           </div>
         </div>
@@ -216,7 +225,7 @@
         <div class="contact-item">
           <i class="fas fa-phone"></i>
           <div>
-            <h4>Teléfono</h4>
+            <h4>{{getText('contact.phone')}}</h4>
             <a href="tel:{{profileData.phone}}">{{profileData.phone}}</a>
           </div>
         </div>
@@ -224,7 +233,7 @@
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <div>
-            <h4>Email</h4>
+            <h4>{{getText('contact.email')}}</h4>
             <a href="mailto:{{profileData.email}}">{{profileData.email}}</a>
           </div>
         </div>
@@ -232,7 +241,7 @@
         <div class="contact-item">
           <i class="fab fa-linkedin"></i>
           <div>
-            <h4>LinkedIn</h4>
+            <h4>{{getText('contact.linkedin')}}</h4>
             <a href="#" target="_blank">alexander-castillo</a>
           </div>
         </div>
@@ -241,18 +250,18 @@
       <!-- Formulario de contacto -->
       <form class="contact-form" (submit)="handleContact($event)">
         <div class="form-group">
-          <input type="text" name="name" placeholder="Nombre completo" required>
+          <input type="text" name="name" [placeholder]="getText('contact.form.name')" required>
         </div>
         
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" required>
+          <input type="email" name="email" [placeholder]="getText('contact.form.email')" required>
         </div>
         
         <div class="form-group">
-          <textarea name="message" rows="6" placeholder="Mensaje" required></textarea>
+          <textarea name="message" rows="6" [placeholder]="getText('contact.form.message')" required></textarea>
         </div>
         
-        <button type="submit" class="btn btn-primary btn-block">Enviar Mensaje</button>
+        <button type="submit" class="btn btn-primary btn-block">{{getText('contact.form.send')}}</button>
       </form>
     </div>
   </div>
@@ -267,10 +276,10 @@
       </div>
       
       <div class="footer-links">
-        <a (click)="showSection('perfil')">Mi Perfil</a>
-        <a (click)="showSection('proyectos')">Proyectos</a>
-        <a (click)="showSection('habilidades')">Habilidades</a>
+        <a (click)="showSection('perfil')">{{getText('nav.profile')}}</a>
+        <a (click)="showSection('proyectos')">{{getText('nav.projects')}}</a>
         <a (click)="showSection('store')">Store</a>
+        <a (click)="showSection('contacto')">{{getText('nav.contact')}}</a>
       </div>
       
       <div class="footer-social">
@@ -292,7 +301,7 @@
   </div>
 </footer>
 
-<!-- Modal de Proyecto -->
+<!-- Modal de Proyecto MEJORADO CON TODOS LOS DETALLES -->
 <div class="project-modal" *ngIf="selectedProject" (click)="closeProjectModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="closeProjectModal()">
@@ -300,24 +309,68 @@
     </button>
     
     <div class="modal-header">
-      <h3>{{selectedProject.title}}</h3>
+      <div class="project-icon-large">{{selectedProject.image}}</div>
+      <div class="project-info">
+        <h3>{{selectedProject.title}}</h3>
+        <p class="project-category-badge">{{selectedProject.category}}</p>
+        <p class="project-description">{{selectedProject.description}}</p>
+      </div>
     </div>
     
     <div class="modal-body">
-      <p>{{selectedProject.details}}</p>
+      <div class="project-details">
+        <p>{{selectedProject.details}}</p>
+      </div>
       
-      <div class="modal-tech">
-        <h4>Tecnologías</h4>
+      <!-- Stack Tecnológico -->
+      <div class="modal-section">
+        <h4><i class="fas fa-code"></i> Stack Tecnológico</h4>
         <div class="tech-list">
-          <span class="tech-tag" *ngFor="let tech of selectedProject.tech">{{tech}}</span>
+          <span class="tech-tag-large" *ngFor="let tech of selectedProject.tech">{{tech}}</span>
         </div>
       </div>
       
-      <div class="modal-features">
-        <h4>Características</h4>
-        <ul>
-          <li *ngFor="let feature of selectedProject.features">{{feature}}</li>
+      <!-- Arquitecturas -->
+      <div class="modal-section" *ngIf="selectedProject.architectures">
+        <h4><i class="fas fa-layer-group"></i> Arquitecturas Implementadas</h4>
+        <div class="architecture-list">
+          <span class="architecture-tag" *ngFor="let arch of selectedProject.architectures">{{arch}}</span>
+        </div>
+      </div>
+      
+      <!-- Patrones de Diseño -->
+      <div class="modal-section" *ngIf="selectedProject.patterns">
+        <h4><i class="fas fa-puzzle-piece"></i> Patrones de Diseño</h4>
+        <div class="pattern-list">
+          <span class="pattern-tag" *ngFor="let pattern of selectedProject.patterns">{{pattern}}</span>
+        </div>
+      </div>
+      
+      <!-- Características principales -->
+      <div class="modal-section">
+        <h4><i class="fas fa-star"></i> Características Principales</h4>
+        <ul class="features-list">
+          <li *ngFor="let feature of selectedProject.features">
+            <i class="fas fa-check-circle"></i>
+            {{feature}}
+          </li>
         </ul>
+      </div>
+      
+      <!-- Enlaces del proyecto -->
+      <div class="modal-actions">
+        <button class="btn btn-primary" disabled>
+          <i class="fab fa-github"></i>
+          Ver Código
+        </button>
+        <button class="btn" disabled>
+          <i class="fas fa-external-link-alt"></i>
+          Demo Live
+        </button>
+        <a [href]="getWhatsAppLink('software')" target="_blank" class="btn whatsapp-btn">
+          <i class="fab fa-whatsapp"></i>
+          Consultar Proyecto
+        </a>
       </div>
     </div>
   </div>
