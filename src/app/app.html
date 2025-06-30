@@ -1,11 +1,17 @@
-<!-- Header Promocional estilo Allbirds -->
+<!-- Header Promocional mejorado -->
 <div class="promo-header">
-  Nuevos proyectos disponibles - Consulta mi 
-  <a (click)="showSection('store')">Store de servicios</a> | 
-  <a (click)="showSection('proyectos')">Portafolio completo</a>
+  <div class="promo-content">
+    <div class="promo-brand">Alexander</div>
+    <div class="promo-separator"></div>
+    <div class="promo-text">
+      Nuevos proyectos disponibles - 
+      <a (click)="showSection('store')">Store de servicios</a> | 
+      <a (click)="showSection('proyectos')">Portafolio completo</a>
+    </div>
+  </div>
 </div>
 
-<!-- Navbar Centrado -->
+<!-- Navbar mejorado -->
 <nav class="navbar">
   <div class="nav-container">
     <a (click)="showSection('hero')" class="nav-brand">alexander</a>
@@ -89,7 +95,7 @@
   </div>
 </section>
 
-<!-- Habilidades Section -->
+<!-- Habilidades Section reorganizada -->
 <section id="habilidades" class="section">
   <div class="container">
     <div class="section-header">
@@ -98,27 +104,28 @@
     </div>
     
     <div class="habilidades-container">
-      <!-- Stack Tecnológico -->
-      <div class="skills-section">
+      <!-- Stack Tecnológico reorganizado -->
+      <div>
         <h3 class="subsection-title">Stack Tecnológico</h3>
-        
-        <div *ngFor="let category of habilidadesTecnicas" class="skill-category">
-          <h4>{{category.category}}</h4>
-          <div class="skills-grid">
-            <div class="skill-item" *ngFor="let skill of category.skills">
-              <div class="skill-info">
-                <div class="skill-icon">
-                  <i [class]="getSkillIcon(skill.name)"></i>
+        <div class="skills-section">
+          <div *ngFor="let category of habilidadesTecnicas" class="skill-category">
+            <h4>{{category.category}}</h4>
+            <div class="skills-grid">
+              <div class="skill-item" *ngFor="let skill of category.skills">
+                <div class="skill-info">
+                  <div class="skill-icon">
+                    <i [class]="getSkillIcon(skill.name)"></i>
+                  </div>
+                  <span>{{skill.name}}</span>
                 </div>
-                <span>{{skill.name}}</span>
+                <span class="skill-level">{{skill.level}}</span>
               </div>
-              <span class="skill-level">{{skill.level}}</span>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Formación Académica -->
+      <!-- Formación Académica mejorada -->
       <div class="education-section">
         <h3 class="subsection-title">Formación Académica</h3>
         
