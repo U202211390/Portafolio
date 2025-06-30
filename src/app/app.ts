@@ -1038,7 +1038,7 @@ export class AppComponent implements OnInit {
   }
 
   public downloadCV(event?: Event) {
-    const cvUrl = './assets/cv/alexander-castillo-cv.pdf';
+    const cvUrl = 'assets/cv/Curriculum Alexander Castillo.pdf';
     const button = event?.target as HTMLButtonElement;
     
     // Animación del botón
