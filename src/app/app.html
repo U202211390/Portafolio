@@ -1,6 +1,15 @@
+<!-- Header Promocional estilo Allbirds -->
+<div class="promo-header">
+  Nuevos proyectos disponibles - Consulta mi 
+  <a (click)="showSection('store')">Store de servicios</a> | 
+  <a (click)="showSection('proyectos')">Portafolio completo</a>
+</div>
+
 <!-- Navbar Centrado -->
 <nav class="navbar">
   <div class="nav-container">
+    <a (click)="showSection('hero')" class="nav-brand">alexander</a>
+    
     <div class="nav-menu">
       <a (click)="showSection('hero')" data-section="hero" class="nav-link active">Inicio</a>
       <a (click)="showSection('perfil')" data-section="perfil" class="nav-link">Mi Perfil</a>
@@ -9,7 +18,8 @@
       <a (click)="showSection('store')" data-section="store" class="nav-link">Store</a>
       <a (click)="showSection('contacto')" data-section="contacto" class="nav-link">Contacto</a>
     </div>
-    <button (click)="toggleTheme()" class="theme-toggle">
+    
+    <button (click)="toggleTheme()" class="theme-toggle" [title]="darkMode ? 'Modo claro' : 'Modo oscuro'">
       <i [class]="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
     </button>
   </div>
@@ -96,7 +106,12 @@
           <h4>{{category.category}}</h4>
           <div class="skills-grid">
             <div class="skill-item" *ngFor="let skill of category.skills">
-              <span>{{skill.name}}</span>
+              <div class="skill-info">
+                <div class="skill-icon">
+                  <i [class]="getSkillIcon(skill.name)"></i>
+                </div>
+                <span>{{skill.name}}</span>
+              </div>
               <span class="skill-level">{{skill.level}}</span>
             </div>
           </div>
@@ -159,10 +174,13 @@
         <div class="store-item-content">
           <h4>{{item.name}}</h4>
           <p>{{item.description}}</p>
-          <div class="store-price">
-            <span class="price">{{item.price}}</span>
-            <button (click)="buyProduct(item)" class="btn-store">Comprar</button>
-          </div>
+          <a 
+            [href]="getWhatsAppLink(item.category)" 
+            target="_blank" 
+            class="whatsapp-btn">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+            Cotizar
+          </a>
         </div>
       </div>
     </div>

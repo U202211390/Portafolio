@@ -260,6 +260,41 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  // Mapa de iconos para habilidades
+  skillIcons: { [key: string]: string } = {
+    // Backend
+    'Java': 'fab fa-java',
+    'Spring Boot': 'fas fa-leaf',
+    'Python': 'fab fa-python',
+    'Node.js': 'fab fa-node-js',
+    'C#': 'fas fa-code',
+    
+    // Frontend
+    'Angular': 'fab fa-angular',
+    'Vue.js': 'fab fa-vuejs',
+    'JavaScript': 'fab fa-js',
+    'TypeScript': 'fas fa-code',
+    'CSS/SCSS': 'fab fa-css3-alt',
+    
+    // Bases de Datos
+    'PostgreSQL': 'fas fa-database',
+    'MongoDB': 'fas fa-database',
+    'MySQL': 'fas fa-database',
+    'SQL Server': 'fas fa-database',
+    
+    // Herramientas
+    'Git': 'fab fa-git-alt',
+    'Docker': 'fab fa-docker',
+    'AWS': 'fab fa-aws',
+    'Postman': 'fas fa-paper-plane'
+  };
+
+  // Números de WhatsApp
+  whatsappNumbers = {
+    software: '51965181546', // Para software
+    hardware: '51945464470'  // Para hardware
+  };
+
   ngOnInit() {
     // Cargar tema desde localStorage
     const savedTheme = localStorage.getItem('theme');
@@ -270,9 +305,30 @@ export class AppComponent implements OnInit {
     
     // Mostrar sección hero por defecto
     this.showSection('hero');
+    
+    // Inicializar animaciones
+    this.initializeAnimations();
   }
 
-  // Navegación entre secciones
+  // Inicializar animaciones
+  initializeAnimations() {
+    // Observador para animaciones en scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observar elementos con animación
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(el => observer.observe(el));
+    }, 500);
+  }
+
+  // Navegación entre secciones mejorada
   showSection(sectionId: string) {
     // Ocultar todas las secciones
     const sections = document.querySelectorAll('.section');
@@ -280,11 +336,19 @@ export class AppComponent implements OnInit {
       section.classList.remove('active');
     });
     
-    // Mostrar sección seleccionada
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-      targetSection.classList.add('active');
-    }
+    // Esperar un poco antes de mostrar la nueva sección
+    setTimeout(() => {
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // Scroll suave al top
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }, 50);
     
     // Actualizar navbar
     const navLinks = document.querySelectorAll('.nav-link');
@@ -306,26 +370,72 @@ export class AppComponent implements OnInit {
     this.menuOpen = !this.menuOpen;
   }
 
-  // Toggle tema oscuro
+  // Toggle tema oscuro mejorado
   toggleTheme() {
     this.darkMode = !this.darkMode;
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+    
+    // Animación suave del toggle
+    const body = document.body;
+    body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+    
+    if (this.darkMode) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // Remover la transición después de completarse
+    setTimeout(() => {
+      body.style.transition = '';
+    }, 300);
+  }
+
+  // Obtener icono para habilidad
+  getSkillIcon(skillName: string): string {
+    return this.skillIcons[skillName] || 'fas fa-code';
+  }
+
+  // Generar enlace de WhatsApp
+  getWhatsAppLink(category: string): string {
+    const number = category === 'software' 
+      ? this.whatsappNumbers.software 
+      : this.whatsappNumbers.hardware;
+    
+    const message = encodeURIComponent(
+      `Hola Alexander! Me interesa consultar sobre tus servicios de ${category}. `
+    );
+    
+    return `https://wa.me/${number}?text=${message}`;
   }
 
   // Mostrar detalles del proyecto
   showProjectDetails(project: any) {
     this.selectedProject = project;
+    // Bloquear scroll del body
+    document.body.style.overflow = 'hidden';
   }
 
   // Cerrar modal del proyecto
   closeProjectModal() {
     this.selectedProject = null;
+    // Restaurar scroll del body
+    document.body.style.overflow = 'auto';
   }
 
   // Filtrar productos del store
   filterStore(category: string) {
     this.selectedCategory = category;
+    
+    // Animación de cambio de categoría
+    const storeItems = document.querySelectorAll('.store-item');
+    storeItems.forEach((item, index) => {
+      (item as HTMLElement).style.animation = 'none';
+      setTimeout(() => {
+        (item as HTMLElement).style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+      }, 50);
+    });
   }
 
   // Obtener productos filtrados
@@ -347,14 +457,34 @@ export class AppComponent implements OnInit {
     };
     
     console.log('Datos de contacto:', contactData);
-    alert('¡Gracias por tu mensaje! Te contactaré pronto.');
-    event.target.reset();
+    
+    // Animación de éxito
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.textContent = '¡Enviado!';
+    submitBtn.style.background = 'var(--whatsapp-green)';
+    
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.style.background = '';
+      event.target.reset();
+    }, 2000);
   }
 
   // Descargar CV
   downloadCV() {
-    alert('Descargando CV...');
-    // Aquí iría la lógica para descargar el CV
+    // Animación del botón
+    const button = event?.target as HTMLButtonElement;
+    if (button) {
+      const originalText = button.textContent;
+      button.textContent = 'Descargando...';
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        alert('CV descargado exitosamente');
+      }, 1500);
+    }
   }
 
   // Ver portafolio completo
@@ -362,14 +492,21 @@ export class AppComponent implements OnInit {
     this.showSection('proyectos');
   }
 
-  // Comprar producto
-  buyProduct(product: any) {
-    alert(`Iniciando compra de: ${product.name}`);
-    // Aquí iría la lógica de compra
-  }
-
   // Obtener año actual
   getCurrentYear() {
     return new Date().getFullYear();
+  }
+
+  // Método para manejar errores de imágenes
+  onImageError(event: any) {
+    event.target.style.display = 'none';
+  }
+
+  // Método para scroll suave a sección
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
