@@ -311,7 +311,7 @@ body.dark-mode .theme-toggle:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA */
+/* NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA SIN ESPACIOS */
 .section {
   min-height: 100vh;
   display: none;
@@ -320,8 +320,9 @@ body.dark-mode .theme-toggle:hover {
   background: var(--primary-white);
   padding: 70px 2rem 0;
   position: relative;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: 0;
+  margin: 0;
   overflow-y: auto;
 }
 

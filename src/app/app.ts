@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
       // Proyectos
       'projects.title': 'Proyectos',
       'projects.subtitle': 'Portafolio completo de sistemas reales implementados',
+      'projects.architectures': 'Arquitecturas',
+      'projects.patterns': 'Patrones',
       
       // Store
       'store.title': 'Store',
@@ -89,6 +91,8 @@ export class AppComponent implements OnInit {
       // Projects
       'projects.title': 'Projects',
       'projects.subtitle': 'Complete portfolio of real implemented systems',
+      'projects.architectures': 'Architectures',
+      'projects.patterns': 'Patterns',
       
       // Store
       'store.title': 'Store',
@@ -156,173 +160,317 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  // TODOS LOS PROYECTOS REALES DEL USUARIO
+  // TODOS LOS PROYECTOS REALES DEL USUARIO (BILINGÜE)
   proyectos = [
     {
       id: 1,
       title: 'Call Center Connect',
-      description: 'Sistema completo de atención al cliente con arquitectura distribuida',
+      description: {
+        es: 'Sistema completo de atención al cliente con arquitectura distribuida',
+        en: 'Complete customer service system with distributed architecture'
+      },
       image: '💬',
       category: 'full-stack',
       tech: ['Node.js', 'TypeScript', 'React', 'Electron', 'Socket.IO', 'Redis', 'Docker'],
-      details: 'Sistema enterprise de call center con comunicación en tiempo real, arquitectura DDD, API Gateway y aplicación desktop con Electron.',
-      features: [
-        'Arquitectura DDD (Domain-Driven Design) completa',
-        'API Gateway con rate limiting y JWT',
-        'Comunicación real-time con Socket.IO',
-        'Aplicación desktop con Electron',
-        'Cache distribuido con Redis',
-        'Microservicios containerizados',
-        'Testing con Jest y Artillery',
-        'Logging estructurado con Winston'
-      ],
+      details: {
+        es: 'Sistema enterprise de call center con comunicación en tiempo real, arquitectura DDD, API Gateway y aplicación desktop con Electron.',
+        en: 'Enterprise call center system with real-time communication, DDD architecture, API Gateway and desktop application with Electron.'
+      },
+      features: {
+        es: [
+          'Arquitectura DDD (Domain-Driven Design) completa',
+          'API Gateway con rate limiting y JWT',
+          'Comunicación real-time con Socket.IO',
+          'Aplicación desktop con Electron',
+          'Cache distribuido con Redis',
+          'Microservicios containerizados',
+          'Testing con Jest y Artillery',
+          'Logging estructurado con Winston'
+        ],
+        en: [
+          'Complete DDD (Domain-Driven Design) architecture',
+          'API Gateway with rate limiting and JWT',
+          'Real-time communication with Socket.IO',
+          'Desktop application with Electron',
+          'Distributed cache with Redis',
+          'Containerized microservices',
+          'Testing with Jest and Artillery',
+          'Structured logging with Winston'
+        ]
+      },
       architectures: ['Clean Architecture', 'Event-Driven', 'Microservices'],
       patterns: ['Repository', 'CQRS', 'Producer-Consumer', 'API Gateway']
     },
     {
       id: 2,
       title: 'KiwiPay Loan Backend',
-      description: 'Sistema financiero robusto con Spring Boot y arquitectura hexagonal',
+      description: {
+        es: 'Sistema financiero robusto con Spring Boot y arquitectura hexagonal',
+        en: 'Robust financial system with Spring Boot and hexagonal architecture'
+      },
       image: '💰',
       category: 'backend',
       tech: ['Java 17', 'Spring Boot', 'PostgreSQL', 'MapStruct', 'Docker', 'Gradle'],
-      details: 'Plataforma financiera enterprise con procesamiento de préstamos, cálculos complejos y seguridad bancaria.',
-      features: [
-        'Arquitectura Hexagonal (Ports & Adapters)',
-        'Spring Security con JWT y BCrypt',
-        'Migraciones con Flyway',
-        'Cache L2 con Caffeine',
-        'Rate limiting con Bucket4j',
-        'Testing con Testcontainers',
-        'Documentación OpenAPI 3.0',
-        'Procesamiento Excel con Apache POI'
-      ],
+      details: {
+        es: 'Plataforma financiera enterprise con procesamiento de préstamos, cálculos complejos y seguridad bancaria.',
+        en: 'Enterprise financial platform with loan processing, complex calculations and banking security.'
+      },
+      features: {
+        es: [
+          'Arquitectura Hexagonal (Ports & Adapters)',
+          'Spring Security con JWT y BCrypt',
+          'Migraciones con Flyway',
+          'Cache L2 con Caffeine',
+          'Rate limiting con Bucket4j',
+          'Testing con Testcontainers',
+          'Documentación OpenAPI 3.0',
+          'Procesamiento Excel con Apache POI'
+        ],
+        en: [
+          'Hexagonal Architecture (Ports & Adapters)',
+          'Spring Security with JWT and BCrypt',
+          'Migrations with Flyway',
+          'L2 Cache with Caffeine',
+          'Rate limiting with Bucket4j',
+          'Testing with Testcontainers',
+          'OpenAPI 3.0 documentation',
+          'Excel processing with Apache POI'
+        ]
+      },
       architectures: ['Hexagonal Architecture', 'Layered Architecture'],
       patterns: ['Repository', 'DTO', 'Factory', 'Strategy', 'Observer']
     },
     {
       id: 3,
       title: 'Microservicios AventuraPe',
-      description: 'Ecosistema de microservicios para turismo con Spring Cloud',
+      description: {
+        es: 'Ecosistema de microservicios para turismo con Spring Cloud',
+        en: 'Tourism microservices ecosystem with Spring Cloud'
+      },
       image: '🏔️',
       category: 'microservices',
       tech: ['Spring Boot', 'Spring Cloud', 'Eureka', 'Gateway', 'PostgreSQL', 'JWT'],
-      details: 'Arquitectura completa de microservicios con service discovery, configuration management y circuit breaker.',
-      features: [
-        'Service Discovery con Eureka',
-        'Configuration Management centralizado',
-        'API Gateway con Spring Cloud Gateway',
-        'Circuit Breaker para tolerancia a fallos',
-        'Servicios independientes (IAM, Posts, Profiles)',
-        'Documentación OpenAPI integrada',
-        'Actuator endpoints para monitoreo',
-        'Multi-módulo Maven optimizado'
-      ],
+      details: {
+        es: 'Arquitectura completa de microservicios con service discovery, configuration management y circuit breaker.',
+        en: 'Complete microservices architecture with service discovery, configuration management and circuit breaker.'
+      },
+      features: {
+        es: [
+          'Service Discovery con Eureka',
+          'Configuration Management centralizado',
+          'API Gateway con Spring Cloud Gateway',
+          'Circuit Breaker para tolerancia a fallos',
+          'Servicios independientes (IAM, Posts, Profiles)',
+          'Documentación OpenAPI integrada',
+          'Actuator endpoints para monitoreo',
+          'Multi-módulo Maven optimizado'
+        ],
+        en: [
+          'Service Discovery with Eureka',
+          'Centralized Configuration Management',
+          'API Gateway with Spring Cloud Gateway',
+          'Circuit Breaker for fault tolerance',
+          'Independent services (IAM, Posts, Profiles)',
+          'Integrated OpenAPI documentation',
+          'Actuator endpoints for monitoring',
+          'Optimized multi-module Maven'
+        ]
+      },
       architectures: ['Microservices', 'Service-Oriented Architecture'],
       patterns: ['Service Discovery', 'API Gateway', 'Circuit Breaker', 'Config Management']
     },
     {
       id: 4,
       title: 'BonoFácil Platform',
-      description: 'Plataforma financiera híbrida Angular + Spring Boot',
+      description: {
+        es: 'Plataforma financiera híbrida Angular + Spring Boot',
+        en: 'Hybrid financial platform Angular + Spring Boot'
+      },
       image: '📊',
       category: 'full-stack',
       tech: ['Angular 20', 'Spring Boot', 'PostgreSQL', 'TypeScript', 'RxJS'],
-      details: 'Sistema de gestión de bonos con arquitectura híbrida que funciona online/offline con fallbacks inteligentes.',
-      features: [
-        'Sistema híbrido online/offline',
-        'Fallback inteligente a datos simulados',
-        'Calculadora financiera (TREA, flujo de caja)',
-        'Interceptores JWT automáticos',
-        'Role-based access (EMISOR, INVERSOR, ADMIN)',
-        'UI responsive y moderna',
-        'Gestión dual: localStorage + backend',
-        'Error handling centralizado'
-      ],
+      details: {
+        es: 'Sistema de gestión de bonos con arquitectura híbrida que funciona online/offline con fallbacks inteligentes.',
+        en: 'Bond management system with hybrid architecture that works online/offline with intelligent fallbacks.'
+      },
+      features: {
+        es: [
+          'Sistema híbrido online/offline',
+          'Fallback inteligente a datos simulados',
+          'Calculadora financiera (TREA, flujo de caja)',
+          'Interceptores JWT automáticos',
+          'Role-based access (EMISOR, INVERSOR, ADMIN)',
+          'UI responsive y moderna',
+          'Gestión dual: localStorage + backend',
+          'Error handling centralizado'
+        ],
+        en: [
+          'Hybrid online/offline system',
+          'Intelligent fallback to simulated data',
+          'Financial calculator (TREA, cash flow)',
+          'Automatic JWT interceptors',
+          'Role-based access (ISSUER, INVESTOR, ADMIN)',
+          'Responsive and modern UI',
+          'Dual management: localStorage + backend',
+          'Centralized error handling'
+        ]
+      },
       architectures: ['Hexagonal Architecture', 'Component-based'],
       patterns: ['Repository', 'Guard', 'Interceptor', 'Observer', 'Command']
     },
     {
       id: 5,
       title: 'AquaSense IoT Smart Tank',
-      description: 'Sistema IoT inteligente para monitoreo de tanques de agua',
+      description: {
+        es: 'Sistema IoT inteligente para monitoreo de tanques de agua',
+        en: 'Smart IoT system for water tank monitoring'
+      },
       image: '🌊',
       category: 'iot',
       tech: ['C++', 'ESP32', 'Arduino', 'WiFi', 'Sensores', 'JSON'],
-      details: 'Sistema IoT completo con sensores ultrasónicos, control automático de válvulas y comunicación cloud.',
-      features: [
-        'Monitoreo automático de nivel de agua',
-        'Control inteligente de válvulas',
-        'Conectividad IoT con upload cloud',
-        'Sistema de auto-diagnóstico',
-        'Failsafe mechanisms automáticos',
-        'LED status indicators',
-        'Watchdog patterns',
-        'Memory management optimizado'
-      ],
+      details: {
+        es: 'Sistema IoT completo con sensores ultrasónicos, control automático de válvulas y comunicación cloud.',
+        en: 'Complete IoT system with ultrasonic sensors, automatic valve control and cloud communication.'
+      },
+      features: {
+        es: [
+          'Monitoreo automático de nivel de agua',
+          'Control inteligente de válvulas',
+          'Conectividad IoT con upload cloud',
+          'Sistema de auto-diagnóstico',
+          'Failsafe mechanisms automáticos',
+          'LED status indicators',
+          'Watchdog patterns',
+          'Memory management optimizado'
+        ],
+        en: [
+          'Automatic water level monitoring',
+          'Smart valve control',
+          'IoT connectivity with cloud upload',
+          'Self-diagnostic system',
+          'Automatic failsafe mechanisms',
+          'LED status indicators',
+          'Watchdog patterns',
+          'Optimized memory management'
+        ]
+      },
       architectures: ['Component-based', 'Event-driven', 'State Machine'],
       patterns: ['Observer', 'Command', 'State Machine', 'Component']
     },
     {
       id: 6,
       title: 'Tavolo Restaurant IoT',
-      description: 'Gestión de restaurantes con sensores IoT y reservas inteligentes',
+      description: {
+        es: 'Gestión de restaurantes con sensores IoT y reservas inteligentes',
+        en: 'Restaurant management with IoT sensors and smart reservations'
+      },
       image: '🍽️',
       category: 'iot',
       tech: ['Spring Boot', 'PostgreSQL', 'Docker', 'IoT Sensors', 'JWT'],
-      details: 'Sistema de gestión para restaurantes con integración IoT para reservas de mesas y control automático.',
-      features: [
-        'Reservas inteligentes con sensores IoT',
-        'Multi-stage Docker build optimizado',
-        'Environment variables para deploy cloud',
-        'JWT security stateless',
-        'API documentation con OpenAPI',
-        'Cloud-ready (Heroku/Railway)',
-        'Maven optimization avanzada',
-        'Health checks integrados'
-      ],
+      details: {
+        es: 'Sistema de gestión para restaurantes con integración IoT para reservas de mesas y control automático.',
+        en: 'Restaurant management system with IoT integration for table reservations and automatic control.'
+      },
+      features: {
+        es: [
+          'Reservas inteligentes con sensores IoT',
+          'Multi-stage Docker build optimizado',
+          'Environment variables para deploy cloud',
+          'JWT security stateless',
+          'API documentation con OpenAPI',
+          'Cloud-ready (Heroku/Railway)',
+          'Maven optimization avanzada',
+          'Health checks integrados'
+        ],
+        en: [
+          'Smart reservations with IoT sensors',
+          'Optimized multi-stage Docker build',
+          'Environment variables for cloud deploy',
+          'Stateless JWT security',
+          'API documentation with OpenAPI',
+          'Cloud-ready (Heroku/Railway)',
+          'Advanced Maven optimization',
+          'Integrated health checks'
+        ]
+      },
       architectures: ['Clean Architecture', 'Layered'],
       patterns: ['Repository', 'Service Layer', 'DTO', 'Dependency Injection']
     },
     {
       id: 7,
       title: 'Redis Data Pipeline',
-      description: 'Sistema distribuido de procesamiento de datos multi-lenguaje',
+      description: {
+        es: 'Sistema distribuido de procesamiento de datos multi-lenguaje',
+        en: 'Multi-language distributed data processing system'
+      },
       image: '🔄',
       category: 'data',
       tech: ['Java', 'Python', 'Redis', 'Jedis', 'Faker', 'Gson'],
-      details: 'Pipeline de datos robusto con Python como producer y Java como consumer, usando Redis como broker.',
-      features: [
-        'Integración multi-lenguaje (Java + Python)',
-        'Producer-Consumer pattern con Redis',
-        'Connection pooling y timeout handling',
-        'Retry mechanisms automáticos',
-        'Data validation e integridad',
-        'Health checks y métricas',
-        'Logging estructurado con emojis',
-        'Error recovery automático'
-      ],
+      details: {
+        es: 'Pipeline de datos robusto con Python como producer y Java como consumer, usando Redis como broker.',
+        en: 'Robust data pipeline with Python as producer and Java as consumer, using Redis as broker.'
+      },
+      features: {
+        es: [
+          'Integración multi-lenguaje (Java + Python)',
+          'Producer-Consumer pattern con Redis',
+          'Connection pooling y timeout handling',
+          'Retry mechanisms automáticos',
+          'Data validation e integridad',
+          'Health checks y métricas',
+          'Logging estructurado con emojis',
+          'Error recovery automático'
+        ],
+        en: [
+          'Multi-language integration (Java + Python)',
+          'Producer-Consumer pattern with Redis',
+          'Connection pooling and timeout handling',
+          'Automatic retry mechanisms',
+          'Data validation and integrity',
+          'Health checks and metrics',
+          'Structured logging with emojis',
+          'Automatic error recovery'
+        ]
+      },
       architectures: ['Producer-Consumer', 'Data Pipeline'],
       patterns: ['Producer-Consumer', 'Caching', 'ETL', 'Error Handling']
     },
     {
       id: 8,
       title: 'Kiwi API Backend',
-      description: 'API principal con integración de servicios externos',
+      description: {
+        es: 'API principal con integración de servicios externos',
+        en: 'Main API with external services integration'
+      },
       image: '🥝',
       category: 'backend',
       tech: ['Node.js', 'TypeScript', 'PostgreSQL', 'Twilio', 'SendGrid', 'Cloudinary'],
-      details: 'Backend principal con integración completa de servicios externos, validación robusta y documentación automática.',
-      features: [
-        'Integración Twilio (SMS), SendGrid (Email)',
-        'Upload de imágenes con Cloudinary',
-        'Validación con Zod schemas',
-        'Swagger automático desde JSDoc',
-        'Path aliasing con module-alias',
-        'Scripts de automatización DB',
-        'File processing con node-xlsx',
-        'CORS y seguridad configurada'
-      ],
+      details: {
+        es: 'Backend principal con integración completa de servicios externos, validación robusta y documentación automática.',
+        en: 'Main backend with complete external services integration, robust validation and automatic documentation.'
+      },
+      features: {
+        es: [
+          'Integración Twilio (SMS), SendGrid (Email)',
+          'Upload de imágenes con Cloudinary',
+          'Validación con Zod schemas',
+          'Swagger automático desde JSDoc',
+          'Path aliasing con module-alias',
+          'Scripts de automatización DB',
+          'File processing con node-xlsx',
+          'CORS y seguridad configurada'
+        ],
+        en: [
+          'Twilio (SMS), SendGrid (Email) integration',
+          'Image upload with Cloudinary',
+          'Validation with Zod schemas',
+          'Automatic Swagger from JSDoc',
+          'Path aliasing with module-alias',
+          'DB automation scripts',
+          'File processing with node-xlsx',
+          'Configured CORS and security'
+        ]
+      },
       architectures: ['Layered Architecture', 'Module Pattern'],
       patterns: ['Factory', 'Singleton', 'Middleware', 'Module']
     }
@@ -398,20 +546,26 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA
+  // NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA SIN ESPACIOS BLANCOS
   public showSection(sectionId: string) {
     // Ocultar todas las secciones INMEDIATAMENTE
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.classList.remove('active'));
+    const allSections = document.querySelectorAll('.section, .hero');
+    allSections.forEach(section => {
+      section.classList.remove('active');
+    });
     
-    // Scroll al top INSTANTÁNEO
+    // Scroll al top INSTANTÁNEO - FORZADO
+    window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     
-    // Mostrar sección INMEDIATAMENTE
+    // Mostrar SOLO la sección objetivo INMEDIATAMENTE
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
+      // Asegurar que la sección aparezca arriba sin espacios
       targetSection.classList.add('active');
+      targetSection.style.paddingTop = '70px'; // Navbar height
+      targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
     }
     
     // Actualizar navbar
@@ -424,6 +578,11 @@ export class AppComponent implements OnInit {
     }
     
     this.currentSection = sectionId;
+    
+    // Forzar scroll a cero después de un tick
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   }
 
   public toggleTheme() {
@@ -487,6 +646,19 @@ export class AppComponent implements OnInit {
       return this.storeItems;
     }
     return this.storeItems.filter(item => item.category === this.selectedCategory);
+  }
+
+  // FUNCIONES PARA CONTENIDO BILINGÜE DE PROYECTOS
+  public getProjectDescription(project: any): string {
+    return project.description[this.currentLanguage] || project.description.es;
+  }
+
+  public getProjectDetails(project: any): string {
+    return project.details[this.currentLanguage] || project.details.es;
+  }
+
+  public getProjectFeatures(project: any): string[] {
+    return project.features[this.currentLanguage] || project.features.es;
   }
 
   public handleContact(event: any) {
