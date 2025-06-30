@@ -322,156 +322,160 @@
   </div>
 </footer>
 
-<!-- SECCIÓN DETALLADA DE PROYECTO - ESTILO MINIMALISTA -->
+<!-- SECCIÓN DETALLADA DE PROYECTO - CENTRADA Y ORGANIZADA -->
 <section id="project-detail" class="section project-detail-section" [class.active]="selectedProject" *ngIf="selectedProject">
-  
-  <!-- Botón de retroceso elegante -->
-  <div class="project-navigation">
-    <button class="back-to-projects-btn" (click)="closeProjectModal()">
-      <i class="fas fa-arrow-left"></i>
-      <span>{{getText('projects.back')}}</span>
-    </button>
-  </div>
   
   <div class="container project-detail-container">
     
-    <!-- Header del proyecto -->
-    <div class="project-detail-header">
-      <div class="project-icon-detail">{{selectedProject.image}}</div>
-      <div class="project-meta">
-        <h1 class="project-detail-title">{{selectedProject.title}}</h1>
-        <span class="project-category-tag">{{selectedProject.category}}</span>
-        <p class="project-brief">{{getProjectDescription(selectedProject)}}</p>
-      </div>
+    <!-- Botón de retroceso más visible -->
+    <div class="project-back-button">
+      <button class="back-to-projects-btn" (click)="closeProjectModal()">
+        <i class="fas fa-arrow-left"></i>
+        <span>{{getText('projects.back')}}</span>
+      </button>
     </div>
     
-    <!-- Contenido principal: Galería + Descripción -->
-    <div class="project-main-content">
+    <!-- Header del proyecto centrado -->
+    <div class="project-header-centered">
+      <div class="project-icon-large">{{selectedProject.image}}</div>
+      <h1 class="project-title-centered">{{selectedProject.title}}</h1>
+      <span class="project-category-centered">{{selectedProject.category}}</span>
+      <p class="project-description-centered">{{getProjectDescription(selectedProject)}}</p>
+    </div>
+    
+    <!-- Carousel de imágenes centrado -->
+    <div class="project-carousel-section">
+      <h2 class="section-title-centered">
+        <i class="fas fa-images"></i>
+        Vista del Proyecto
+      </h2>
       
-      <!-- Galería de imágenes -->
-      <div class="project-gallery-section">
-        <h2 class="detail-section-title">
-          <i class="fas fa-images"></i>
-          {{getText('project.gallery')}}
-        </h2>
-        
-        <div class="gallery-container">
-          <!-- Imagen principal -->
-          <div class="main-image-container">
-            <div class="main-screenshot">
-              <div class="screenshot-placeholder main-placeholder">
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-prev" (click)="prevCarouselImage()">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="project-image-placeholder">
                 <i class="fas fa-desktop"></i>
                 <span>Vista Principal</span>
                 <p>Interfaz principal del sistema</p>
               </div>
             </div>
-          </div>
-          
-          <!-- Imágenes secundarias -->
-          <div class="secondary-images">
-            <div class="secondary-screenshot">
-              <div class="screenshot-placeholder">
+            <div class="carousel-slide">
+              <div class="project-image-placeholder">
                 <i class="fas fa-mobile-alt"></i>
-                <span>Mobile</span>
+                <span>Vista Móvil</span>
+                <p>Diseño responsive optimizado</p>
               </div>
             </div>
-            <div class="secondary-screenshot">
-              <div class="screenshot-placeholder">
+            <div class="carousel-slide">
+              <div class="project-image-placeholder">
                 <i class="fas fa-code"></i>
                 <span>Código</span>
+                <p>Arquitectura y estructura</p>
               </div>
             </div>
-            <div class="secondary-screenshot">
-              <div class="screenshot-placeholder">
+            <div class="carousel-slide">
+              <div class="project-image-placeholder">
                 <i class="fas fa-chart-bar"></i>
-                <span>Analytics</span>
-              </div>
-            </div>
-            <div class="secondary-screenshot">
-              <div class="screenshot-placeholder">
-                <i class="fas fa-cog"></i>
-                <span>Admin</span>
+                <span>Dashboard</span>
+                <p>Panel de administración</p>
               </div>
             </div>
           </div>
+          
+          <button class="carousel-btn carousel-next" (click)="nextCarouselImage()">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <!-- Indicadores del carousel -->
+        <div class="carousel-indicators">
+          <button class="indicator active" (click)="goToCarouselSlide(0)"></button>
+          <button class="indicator" (click)="goToCarouselSlide(1)"></button>
+          <button class="indicator" (click)="goToCarouselSlide(2)"></button>
+          <button class="indicator" (click)="goToCarouselSlide(3)"></button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contenido principal organizado -->
+    <div class="project-content-organized">
+      
+      <!-- Descripción detallada -->
+      <div class="project-info-section">
+        <h3 class="info-title">
+          <i class="fas fa-info-circle"></i>
+          {{getText('project.description')}}
+        </h3>
+        <p class="project-detailed-description">{{getProjectDetails(selectedProject)}}</p>
+        
+        <h3 class="info-title">
+          <i class="fas fa-star"></i>
+          {{getText('project.features')}}
+        </h3>
+        <ul class="features-list-organized">
+          <li *ngFor="let feature of getProjectFeatures(selectedProject)" class="feature-item-organized">
+            <i class="fas fa-check-circle"></i>
+            <span>{{feature}}</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Stack tecnológico -->
+      <div class="project-tech-section">
+        <h3 class="info-title">
+          <i class="fas fa-code"></i>
+          {{getText('project.technologies')}}
+        </h3>
+        <div class="tech-grid-organized">
+          <span class="tech-item-organized" *ngFor="let tech of selectedProject.tech">{{tech}}</span>
         </div>
       </div>
       
-      <!-- Descripción detallada -->
-      <div class="project-description-section">
-        <h2 class="detail-section-title">
-          <i class="fas fa-info-circle"></i>
-          {{getText('project.description')}}
-        </h2>
-        
-        <div class="description-content">
-          <p class="project-detailed-description">{{getProjectDetails(selectedProject)}}</p>
+      <!-- Arquitectura y patrones -->
+      <div class="project-architecture-section" *ngIf="selectedProject.architectures || selectedProject.patterns">
+        <div class="arch-pattern-row">
           
-          <!-- Características destacadas -->
-          <div class="features-highlight">
-            <h3>{{getText('project.features')}}</h3>
-            <ul class="features-list">
-              <li *ngFor="let feature of getProjectFeatures(selectedProject)" class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>{{feature}}</span>
-              </li>
-            </ul>
+          <div class="arch-section" *ngIf="selectedProject.architectures">
+            <h3 class="info-title">
+              <i class="fas fa-sitemap"></i>
+              {{getText('project.architecture')}}
+            </h3>
+            <div class="arch-items-organized">
+              <span class="arch-item-organized" *ngFor="let arch of selectedProject.architectures">{{arch}}</span>
+            </div>
           </div>
+          
+          <div class="pattern-section" *ngIf="selectedProject.patterns">
+            <h3 class="info-title">
+              <i class="fas fa-puzzle-piece"></i>
+              {{getText('project.patterns')}}
+            </h3>
+            <div class="pattern-items-organized">
+              <span class="pattern-item-organized" *ngFor="let pattern of selectedProject.patterns">{{pattern}}</span>
+            </div>
+          </div>
+          
         </div>
       </div>
+      
     </div>
     
-    <!-- Stack tecnológico minimalista -->
-    <div class="tech-stack-section">
-      <h2 class="detail-section-title">
-        <i class="fas fa-code"></i>
-        {{getText('project.technologies')}}
-      </h2>
-      <div class="tech-tags-container">
-        <span class="tech-tag-minimal" *ngFor="let tech of selectedProject.tech">{{tech}}</span>
-      </div>
-    </div>
-    
-    <!-- Arquitectura y patrones -->
-    <div class="architecture-section" *ngIf="selectedProject.architectures || selectedProject.patterns">
-      <div class="arch-pattern-grid">
-        
-        <!-- Arquitecturas -->
-        <div class="arch-column" *ngIf="selectedProject.architectures">
-          <h3 class="subsection-title">
-            <i class="fas fa-sitemap"></i>
-            {{getText('project.architecture')}}
-          </h3>
-          <div class="arch-list">
-            <span class="arch-item" *ngFor="let arch of selectedProject.architectures">{{arch}}</span>
-          </div>
-        </div>
-        
-        <!-- Patrones -->
-        <div class="pattern-column" *ngIf="selectedProject.patterns">
-          <h3 class="subsection-title">
-            <i class="fas fa-puzzle-piece"></i>
-            {{getText('project.patterns')}}
-          </h3>
-          <div class="pattern-list">
-            <span class="pattern-item" *ngFor="let pattern of selectedProject.patterns">{{pattern}}</span>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    
-    <!-- Acciones del proyecto -->
-    <div class="project-actions">
-      <button class="action-btn github-btn" disabled>
+    <!-- Acciones del proyecto centradas -->
+    <div class="project-actions-centered">
+      <button class="action-btn-modern github-btn" disabled>
         <i class="fab fa-github"></i>
         <span>{{getText('project.viewCode')}}</span>
       </button>
-      <button class="action-btn demo-btn" disabled>
+      <button class="action-btn-modern demo-btn" disabled>
         <i class="fas fa-external-link-alt"></i>
         <span>{{getText('project.liveDemo')}}</span>
       </button>
-      <a [href]="getWhatsAppLink('software')" target="_blank" class="action-btn whatsapp-btn">
+      <a [href]="getWhatsAppLink('software')" target="_blank" class="action-btn-modern whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
         <span>{{getText('project.contact')}}</span>
       </a>

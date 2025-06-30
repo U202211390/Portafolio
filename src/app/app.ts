@@ -875,6 +875,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // PROPIEDADES PARA EL CAROUSEL
+  currentCarouselSlide: number = 0;
+  totalCarouselSlides: number = 4;
+
   // FUNCIONES PÚBLICAS PARA EL TEMPLATE
 
   public getText(key: string): string {
@@ -970,13 +974,46 @@ export class AppComponent implements OnInit {
 
   public showProjectDetails(project: any) {
     this.selectedProject = project;
+    this.currentCarouselSlide = 0; // Reset carousel al abrir proyecto
     // El overflow ya está en hidden por el SPA
   }
 
   public closeProjectModal() {
     this.selectedProject = null;
+    this.currentCarouselSlide = 0; // Reset carousel al cerrar
     // Mantener el SPA sin scroll
     document.body.style.overflow = 'hidden';
+  }
+
+  // FUNCIONES DEL CAROUSEL
+  public nextCarouselImage() {
+    this.currentCarouselSlide = (this.currentCarouselSlide + 1) % this.totalCarouselSlides;
+    this.updateCarouselDisplay();
+  }
+
+  public prevCarouselImage() {
+    this.currentCarouselSlide = this.currentCarouselSlide === 0 
+      ? this.totalCarouselSlides - 1 
+      : this.currentCarouselSlide - 1;
+    this.updateCarouselDisplay();
+  }
+
+  public goToCarouselSlide(index: number) {
+    this.currentCarouselSlide = index;
+    this.updateCarouselDisplay();
+  }
+
+  private updateCarouselDisplay() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicators .indicator');
+    
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === this.currentCarouselSlide);
+    });
+    
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentCarouselSlide);
+    });
   }
 
   public filterProjects(category: string) {
