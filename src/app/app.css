@@ -2287,11 +2287,13 @@ body.dark-mode .lang-selector:focus {
   gap: 0;
 }
 
-/* Botón de regreso debajo del header con espacio */
+/* Botón de regreso flotante a la izquierda */
 .project-back-button-below-header {
-  margin: 3rem 0;
-  text-align: left;
-  padding-left: 0;
+  position: fixed;
+  top: 35%;
+  left: 2rem;
+  transform: translateY(-50%);
+  z-index: 999;
   order: 2;
 }
 
@@ -2299,27 +2301,28 @@ body.dark-mode .lang-selector:focus {
   background: var(--primary-white);
   border: 2px solid var(--primary-black);
   color: var(--primary-black);
-  padding: 16px 32px;
+  padding: 16px 24px;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
   margin-left: 0;
   z-index: 2;
+  min-width: auto;
 }
 
 .back-to-projects-btn-new:hover {
   background: var(--primary-black);
   color: var(--primary-white);
-  transform: translateY(-3px) translateX(5px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .back-to-projects-btn-new i {
@@ -2749,11 +2752,13 @@ body.dark-mode .back-to-projects-btn-new {
   background: var(--dark-bg);
   border-color: var(--primary-white);
   color: var(--primary-white);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .back-to-projects-btn-new:hover {
   background: var(--primary-white);
   color: var(--primary-black);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
 }
 
 body.dark-mode .back-to-projects-btn {
@@ -2847,7 +2852,11 @@ body.dark-mode .action-btn-modern:hover {
   }
   
   .project-back-button-below-header {
-    margin: 2rem 0;
+    position: fixed;
+    top: 120px;
+    left: 1rem;
+    transform: none;
+    z-index: 999;
   }
   
   .project-carousel-section {
@@ -2907,9 +2916,10 @@ body.dark-mode .action-btn-modern:hover {
   }
   
   .back-to-projects-btn-new {
-    padding: 12px 24px;
-    font-size: 1rem;
+    padding: 12px 20px;
+    font-size: 0.9rem;
     margin-left: 0;
+    gap: 8px;
   }
 
   .back-to-projects-btn {
