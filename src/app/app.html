@@ -89,37 +89,37 @@
         (click)="filterProjects('all')" 
         [class.active]="selectedProjectCategory === 'all'"
         class="category-btn">
-        Todos ({{proyectos.length}})
+        {{getText('projects.all')}} ({{proyectos.length}})
       </button>
       <button 
         (click)="filterProjects('full-stack')" 
         [class.active]="selectedProjectCategory === 'full-stack'"
         class="category-btn">
-        Full-Stack
+        {{getText('projects.full-stack')}}
       </button>
       <button 
         (click)="filterProjects('backend')" 
         [class.active]="selectedProjectCategory === 'backend'"
         class="category-btn">
-        Backend
+        {{getText('projects.backend')}}
       </button>
       <button 
         (click)="filterProjects('microservices')" 
         [class.active]="selectedProjectCategory === 'microservices'"
         class="category-btn">
-        Microservicios
+        {{getText('projects.microservices')}}
       </button>
       <button 
         (click)="filterProjects('iot')" 
         [class.active]="selectedProjectCategory === 'iot'"
         class="category-btn">
-        IoT
+        {{getText('projects.iot')}}
       </button>
       <button 
         (click)="filterProjects('data')" 
         [class.active]="selectedProjectCategory === 'data'"
         class="category-btn">
-        Data
+        {{getText('projects.data')}}
       </button>
     </div>
     

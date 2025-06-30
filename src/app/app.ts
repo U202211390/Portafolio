@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   selectedProjectCategory: string = 'all';
   currentLanguage: string = 'es';
 
-  // TEXTOS MULTIIDIOMA COMPLETOS
+  // SISTEMA DE INTERNACIONALIZACIÓN MEJORADO
   texts: { [key: string]: { [key: string]: string } } = {
     es: {
       // Navegación
@@ -44,6 +44,12 @@ export class AppComponent implements OnInit {
       'projects.subtitle': 'Portafolio completo de sistemas reales implementados',
       'projects.architectures': 'Arquitecturas',
       'projects.patterns': 'Patrones',
+      'projects.all': 'Todos',
+      'projects.full-stack': 'Full-Stack',
+      'projects.backend': 'Backend',
+      'projects.microservices': 'Microservicios',
+      'projects.iot': 'IoT',
+      'projects.data': 'Datos',
       
       // Store
       'store.title': 'Store',
@@ -93,6 +99,12 @@ export class AppComponent implements OnInit {
       'projects.subtitle': 'Complete portfolio of real implemented systems',
       'projects.architectures': 'Architectures',
       'projects.patterns': 'Patterns',
+      'projects.all': 'All',
+      'projects.full-stack': 'Full-Stack',
+      'projects.backend': 'Backend',
+      'projects.microservices': 'Microservices',
+      'projects.iot': 'IoT',
+      'projects.data': 'Data',
       
       // Store
       'store.title': 'Store',
@@ -132,33 +144,66 @@ export class AppComponent implements OnInit {
     email: 'jaircastillo2502@gmail.com'
   };
 
-  // Roles profesionales
-  perfilRoles = [
-    {
-      icon: 'fas fa-microchip',
-      title: 'Arquitecto de Microservicios',
-      description: 'Diseño e implementación de arquitecturas distribuidas con Spring Cloud, Docker y API Gateway',
-      skills: ['Spring Cloud', 'Microservicios', 'Docker', 'Kubernetes', 'API Gateway']
-    },
-    {
-      icon: 'fas fa-code',
-      title: 'Desarrollador Full-Stack',
-      description: 'Desarrollo completo desde backend con Java/Node.js hasta frontend con Angular/React',
-      skills: ['Java', 'Spring Boot', 'Angular', 'React', 'TypeScript']
-    },
-    {
-      icon: 'fas fa-database',
-      title: 'Especialista en Datos',
-      description: 'Gestión de bases de datos, cache con Redis, y procesamiento de datos a gran escala',
-      skills: ['PostgreSQL', 'MongoDB', 'Redis', 'ETL', 'Data Pipeline']
-    },
-    {
-      icon: 'fas fa-shield-alt',
-      title: 'DevOps & Seguridad',
-      description: 'Implementación de CI/CD, containerización y sistemas de autenticación robustos',
-      skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
-    }
-  ];
+  // Roles profesionales bilingües
+  private perfilRolesData = {
+    es: [
+      {
+        icon: 'fas fa-microchip',
+        title: 'Arquitecto de Microservicios',
+        description: 'Diseño e implementación de arquitecturas distribuidas con Spring Cloud, Docker y API Gateway',
+        skills: ['Spring Cloud', 'Microservicios', 'Docker', 'Kubernetes', 'API Gateway']
+      },
+      {
+        icon: 'fas fa-code',
+        title: 'Desarrollador Full-Stack',
+        description: 'Desarrollo completo desde backend con Java/Node.js hasta frontend con Angular/React',
+        skills: ['Java', 'Spring Boot', 'Angular', 'React', 'TypeScript']
+      },
+      {
+        icon: 'fas fa-database',
+        title: 'Especialista en Datos',
+        description: 'Gestión de bases de datos, cache con Redis, y procesamiento de datos a gran escala',
+        skills: ['PostgreSQL', 'MongoDB', 'Redis', 'ETL', 'Data Pipeline']
+      },
+      {
+        icon: 'fas fa-shield-alt',
+        title: 'DevOps & Seguridad',
+        description: 'Implementación de CI/CD, containerización y sistemas de autenticación robustos',
+        skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
+      }
+    ],
+    en: [
+      {
+        icon: 'fas fa-microchip',
+        title: 'Microservices Architect',
+        description: 'Design and implementation of distributed architectures with Spring Cloud, Docker and API Gateway',
+        skills: ['Spring Cloud', 'Microservices', 'Docker', 'Kubernetes', 'API Gateway']
+      },
+      {
+        icon: 'fas fa-code',
+        title: 'Full-Stack Developer',
+        description: 'Complete development from backend with Java/Node.js to frontend with Angular/React',
+        skills: ['Java', 'Spring Boot', 'Angular', 'React', 'TypeScript']
+      },
+      {
+        icon: 'fas fa-database',
+        title: 'Data Specialist',
+        description: 'Database management, Redis caching, and large-scale data processing',
+        skills: ['PostgreSQL', 'MongoDB', 'Redis', 'ETL', 'Data Pipeline']
+      },
+      {
+        icon: 'fas fa-shield-alt',
+        title: 'DevOps & Security',
+        description: 'CI/CD implementation, containerization and robust authentication systems',
+        skills: ['Docker', 'JWT', 'Spring Security', 'CI/CD', 'Monitoring']
+      }
+    ]
+  };
+
+  // Getter para roles según idioma actual
+  get perfilRoles() {
+    return this.perfilRolesData[this.currentLanguage as 'es' | 'en'] || this.perfilRolesData.es;
+  }
 
   // TODOS LOS PROYECTOS REALES DEL USUARIO (BILINGÜE)
   proyectos = [
@@ -476,44 +521,88 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  // Store items
-  storeItems = [
-    {
-      id: 1,
-      name: 'Sistema de Microservicios',
-      description: 'Arquitectura completa de microservicios con Spring Cloud, Docker y CI/CD',
-      category: 'software',
-      image: '🏗️'
-    },
-    {
-      id: 2,
-      name: 'App Full-Stack',
-      description: 'Aplicación completa Angular/React + Spring Boot/Node.js con deployment',
-      category: 'software',
-      image: '💻'
-    },
-    {
-      id: 3,
-      name: 'Sistema IoT',
-      description: 'Solución IoT completa con sensores, backend y dashboard de monitoreo',
-      category: 'software',
-      image: '🌐'
-    },
-    {
-      id: 4,
-      name: 'Workstation Pro',
-      description: 'Estación de trabajo optimizada para desarrollo con múltiples monitores',
-      category: 'hardware',
-      image: '🖥️'
-    },
-    {
-      id: 5,
-      name: 'Servidor Development',
-      description: 'Servidor dedicado para desarrollo y testing con Docker y Kubernetes',
-      category: 'hardware',
-      image: '🖧'
-    }
-  ];
+  // Store items bilingües
+  private storeItemsData = {
+    es: [
+      {
+        id: 1,
+        name: 'Sistema de Microservicios',
+        description: 'Arquitectura completa de microservicios con Spring Cloud, Docker y CI/CD',
+        category: 'software',
+        image: '🏗️'
+      },
+      {
+        id: 2,
+        name: 'App Full-Stack',
+        description: 'Aplicación completa Angular/React + Spring Boot/Node.js con deployment',
+        category: 'software',
+        image: '💻'
+      },
+      {
+        id: 3,
+        name: 'Sistema IoT',
+        description: 'Solución IoT completa con sensores, backend y dashboard de monitoreo',
+        category: 'software',
+        image: '🌐'
+      },
+      {
+        id: 4,
+        name: 'Workstation Pro',
+        description: 'Estación de trabajo optimizada para desarrollo con múltiples monitores',
+        category: 'hardware',
+        image: '🖥️'
+      },
+      {
+        id: 5,
+        name: 'Servidor Development',
+        description: 'Servidor dedicado para desarrollo y testing con Docker y Kubernetes',
+        category: 'hardware',
+        image: '🖧'
+      }
+    ],
+    en: [
+      {
+        id: 1,
+        name: 'Microservices System',
+        description: 'Complete microservices architecture with Spring Cloud, Docker and CI/CD',
+        category: 'software',
+        image: '🏗️'
+      },
+      {
+        id: 2,
+        name: 'Full-Stack App',
+        description: 'Complete application Angular/React + Spring Boot/Node.js with deployment',
+        category: 'software',
+        image: '💻'
+      },
+      {
+        id: 3,
+        name: 'IoT System',
+        description: 'Complete IoT solution with sensors, backend and monitoring dashboard',
+        category: 'software',
+        image: '🌐'
+      },
+      {
+        id: 4,
+        name: 'Workstation Pro',
+        description: 'Optimized workstation for development with multiple monitors',
+        category: 'hardware',
+        image: '🖥️'
+      },
+      {
+        id: 5,
+        name: 'Development Server',
+        description: 'Dedicated server for development and testing with Docker and Kubernetes',
+        category: 'hardware',
+        image: '🖧'
+      }
+    ]
+  };
+
+  // Getter para store según idioma actual
+  get storeItems() {
+    return this.storeItemsData[this.currentLanguage as 'es' | 'en'] || this.storeItemsData.es;
+  }
 
   // WhatsApp
   whatsappNumbers = {
@@ -524,8 +613,21 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loadLanguage();
     this.loadTheme();
+    this.initializeSPA();
     this.showSection('hero');
     this.initializeAnimations();
+  }
+
+  private initializeSPA() {
+    // Deshabilitar scroll global para SPA
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
+    // Asegurar que todas las vistas estén ocultas al inicio
+    const allViews = document.querySelectorAll('.section, .hero');
+    allViews.forEach(view => {
+      view.classList.remove('active');
+    });
   }
 
   // FUNCIONES PÚBLICAS PARA EL TEMPLATE
@@ -538,6 +640,7 @@ export class AppComponent implements OnInit {
     this.currentLanguage = this.currentLanguage === 'es' ? 'en' : 'es';
     localStorage.setItem('alexander-language', this.currentLanguage);
     this.updateDataByLanguage();
+    this.forceLanguageUpdate();
     
     const langButton = document.querySelector('.lang-selector') as HTMLElement;
     if (langButton) {
@@ -546,29 +649,32 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // NAVEGACIÓN SPA - CADA SECCIÓN ES UNA PÁGINA COMPLETA SIN ESPACIOS BLANCOS
+  private forceLanguageUpdate() {
+    // Forzar actualización de elementos dinámicos
+    setTimeout(() => {
+      // Trigger change detection para asegurar que todos los elementos se actualicen
+      const event = new Event('languageChanged');
+      document.dispatchEvent(event);
+    }, 50);
+  }
+
+  // NAVEGACIÓN SPA REAL - CADA SECCIÓN ES UNA PÁGINA COMPLETAMENTE INDEPENDIENTE
   public showSection(sectionId: string) {
-    // Ocultar todas las secciones INMEDIATAMENTE
-    const allSections = document.querySelectorAll('.section, .hero');
-    allSections.forEach(section => {
-      section.classList.remove('active');
+    // OCULTAR TODAS las secciones y hero
+    const allViews = document.querySelectorAll('.section, .hero');
+    allViews.forEach(view => {
+      view.classList.remove('active');
     });
     
-    // Scroll al top INSTANTÁNEO - FORZADO
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Mostrar SOLO la sección objetivo INMEDIATAMENTE
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-      // Asegurar que la sección aparezca arriba sin espacios
-      targetSection.classList.add('active');
-      targetSection.style.paddingTop = '70px'; // Navbar height
-      targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+    // MOSTRAR SOLO la vista seleccionada
+    const targetView = document.getElementById(sectionId);
+    if (targetView) {
+      targetView.classList.add('active');
+      // Scroll a la parte superior de la vista si tiene scroll interno
+      targetView.scrollTop = 0;
     }
     
-    // Actualizar navbar
+    // Actualizar navbar activo
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => link.classList.remove('active'));
     
@@ -577,12 +683,13 @@ export class AppComponent implements OnInit {
       activeLink.classList.add('active');
     }
     
+    // Actualizar estado actual
     this.currentSection = sectionId;
     
-    // Forzar scroll a cero después de un tick
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
+    // Mantener el SPA sin scroll global
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
   }
 
   public toggleTheme() {
@@ -618,12 +725,13 @@ export class AppComponent implements OnInit {
 
   public showProjectDetails(project: any) {
     this.selectedProject = project;
-    document.body.style.overflow = 'hidden';
+    // El overflow ya está en hidden por el SPA
   }
 
   public closeProjectModal() {
     this.selectedProject = null;
-    document.body.style.overflow = 'auto';
+    // Mantener el SPA sin scroll
+    document.body.style.overflow = 'hidden';
   }
 
   public filterProjects(category: string) {
