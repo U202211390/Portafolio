@@ -34,19 +34,34 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section CON IMAGEN CREATIVA -->
 <section id="hero" class="hero section active">
   <div class="container">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        {{profileData.name}}
-        <span class="last-name">{{profileData.lastName}}</span>
-      </h1>
-      <p class="hero-subtitle">{{profileData.title}}</p>
-      <p class="hero-description">{{profileData.description}}</p>
-      <div class="hero-cta">
-        <button (click)="showSection('proyectos')" class="btn btn-primary">{{getText('hero.btn.projects')}}</button>
-        <button (click)="downloadCV()" class="btn">{{getText('hero.btn.cv')}}</button>
+    <div class="hero-wrapper">
+      <!-- Contenido del texto -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          {{profileData.name}}
+          <span class="last-name">{{profileData.lastName}}</span>
+        </h1>
+        <p class="hero-subtitle">{{profileData.title}}</p>
+        <p class="hero-description">{{profileData.description}}</p>
+        <div class="hero-cta">
+          <button (click)="showSection('proyectos')" class="btn btn-primary">{{getText('hero.btn.projects')}}</button>
+          <button (click)="downloadCV()" class="btn">{{getText('hero.btn.cv')}}</button>
+        </div>
+      </div>
+      
+      <!-- Imagen de perfil creativa -->
+      <div class="hero-image">
+        <div class="profile-image-wrapper">
+          <img [src]="'/assets/profile/imagen_perfil.jpg'" 
+               alt="Alexander Castillo - Software Engineer" 
+               class="profile-image"
+               loading="lazy">
+          <div class="image-decoration"></div>
+          <div class="image-glow"></div>
+        </div>
       </div>
     </div>
   </div>
