@@ -327,20 +327,20 @@
   
   <div class="container project-detail-container">
     
-    <!-- Botón de retroceso más visible -->
-    <div class="project-back-button">
-      <button class="back-to-projects-btn" (click)="closeProjectModal()">
-        <i class="fas fa-arrow-left"></i>
-        <span>{{getText('projects.back')}}</span>
-      </button>
-    </div>
-    
     <!-- Header del proyecto centrado -->
     <div class="project-header-centered">
       <div class="project-icon-large">{{selectedProject.image}}</div>
       <h1 class="project-title-centered">{{selectedProject.title}}</h1>
       <span class="project-category-centered">{{selectedProject.category}}</span>
       <p class="project-description-centered">{{getProjectDescription(selectedProject)}}</p>
+    </div>
+    
+    <!-- Botón de retroceso debajo del header con espacio -->
+    <div class="project-back-button-below-header">
+      <button class="back-to-projects-btn-new" (click)="closeProjectModal()">
+        <i class="fas fa-arrow-left"></i>
+        <span>{{getText('projects.back')}}</span>
+      </button>
     </div>
     
     <!-- Carousel de imágenes centrado -->

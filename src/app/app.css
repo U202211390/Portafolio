@@ -2282,7 +2282,49 @@ body.dark-mode .lang-selector:focus {
   padding: 0 2rem;
 }
 
-/* Botón de regreso más visible */
+/* Botón de regreso debajo del header con espacio */
+.project-back-button-below-header {
+  margin: 2rem 0 3rem 0;
+  text-align: left;
+  padding-left: 0;
+}
+
+.back-to-projects-btn-new {
+  background: var(--primary-white);
+  border: 2px solid var(--primary-black);
+  color: var(--primary-black);
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  margin-left: 0;
+}
+
+.back-to-projects-btn-new:hover {
+  background: var(--primary-black);
+  color: var(--primary-white);
+  transform: translateY(-3px) translateX(5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.back-to-projects-btn-new i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.back-to-projects-btn-new:hover i {
+  transform: translateX(-5px);
+}
+
+/* Botón de regreso más visible - mantener para compatibilidad */
 .project-back-button {
   margin-bottom: 2rem;
   text-align: left;
@@ -2688,6 +2730,17 @@ body.dark-mode .project-detail-section {
   background: var(--dark-bg);
 }
 
+body.dark-mode .back-to-projects-btn-new {
+  background: var(--dark-bg);
+  border-color: var(--primary-white);
+  color: var(--primary-white);
+}
+
+body.dark-mode .back-to-projects-btn-new:hover {
+  background: var(--primary-white);
+  color: var(--primary-black);
+}
+
 body.dark-mode .back-to-projects-btn {
   background: var(--dark-bg);
   border-color: var(--primary-white);
@@ -2814,6 +2867,16 @@ body.dark-mode .action-btn-modern:hover {
     justify-content: center;
   }
   
+  .back-to-projects-btn-new {
+    padding: 12px 24px;
+    font-size: 1rem;
+    margin-left: 0;
+  }
+  
+  .project-back-button-below-header {
+    margin: 1.5rem 0 2rem 0;
+  }
+
   .back-to-projects-btn {
     padding: 10px 16px;
     font-size: 0.9rem;
