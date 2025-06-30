@@ -51,6 +51,18 @@ export class AppComponent implements OnInit {
       'projects.iot': 'IoT',
       'projects.data': 'Datos',
       'projects.frontend': 'Frontend',
+      'projects.back': 'Volver a Proyectos',
+      
+      // Project Detail
+      'project.gallery': 'Galería Visual',
+      'project.description': 'Descripción Detallada',
+      'project.features': 'Características Principales',
+      'project.technologies': 'Stack Tecnológico',
+      'project.architecture': 'Arquitecturas',
+      'project.patterns': 'Patrones de Diseño',
+      'project.viewCode': 'Ver Código',
+      'project.liveDemo': 'Demo en Vivo',
+      'project.contact': 'Consultar Proyecto',
       
       // Store
       'store.title': 'Tienda',
@@ -107,6 +119,18 @@ export class AppComponent implements OnInit {
       'projects.iot': 'IoT',
       'projects.data': 'Data',
       'projects.frontend': 'Frontend',
+      'projects.back': 'Back to Projects',
+      
+      // Project Detail
+      'project.gallery': 'Visual Gallery',
+      'project.description': 'Detailed Description',
+      'project.features': 'Key Features',
+      'project.technologies': 'Tech Stack',
+      'project.architecture': 'Architectures',
+      'project.patterns': 'Design Patterns',
+      'project.viewCode': 'View Code',
+      'project.liveDemo': 'Live Demo',
+      'project.contact': 'Consult Project',
       
       // Store
       'store.title': 'Store',
